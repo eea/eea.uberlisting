@@ -9,7 +9,7 @@
         <metal:block use-macro="context/folder_listing/macros/content-core">
             <metal:entries fill-slot="entries">
 
-            <metal:listing define-macro="listing" tal:define="smartView context/@@uberlisting_view">
+            <metal:listing define-macro="listing" tal:define="smartView nocall:context/@@uberlisting_view">
                 <ul id="smart-view-switch" class="eea-horizontal-list eea-no-list-style eea-rounded-corners" tal:define="templateName smartView/getTemplateName">
                     <li tal:attributes="class python:(templateName.endswith('folder_listing') and 'selected') or ''" data-templateId="smart_folder_listing">
                         <img i18n:attributes="title; alt" title="Listing" alt="Listing" src="folder_listing_icon.png"/>

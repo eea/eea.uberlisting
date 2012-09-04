@@ -17,4 +17,7 @@
         name="eea.uberlisting.js"
         directory="./js" />
 
+    <browser:resourceDirectory
+        name="eea.uberlisting.css"
+        directory="./css" />
 </configure>

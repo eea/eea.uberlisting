@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- This file holds the setup configuration for the portal_css tool. -->
+
+<object name="portal_css">
+
+    <stylesheet title="" 
+        id="++resource++eea.uberlisting.css/uberlisting_view.css"
+        media="screen" rel="stylesheet" rendering="link"
+        cacheable="True" compression="safe" cookable="True"
+        conditionalcomment=""
+        expression=""
+        position-before="ploneCustom.css"
+        /> 
+
+</object>
+

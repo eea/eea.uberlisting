@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- This file holds the setup configuration for the portal_javascripts tool. -->
+
+<object name="portal_javascripts">
+
+ <javascript authenticated="False" cacheable="True" compression="safe" cookable="True"
+     enabled="True" expression="" 
+     id="++resource++eea.uberlisting.js/uberlisting_view.js" inline="False" />
+
+</object>
+
