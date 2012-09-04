@@ -11,7 +11,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="eea.uberlisting"
+      title="EEA Uberlisting"
       directory="profiles/default"
       description="Installs the eea.uberlisting package"
       provides="Products.GenericSetup.interfaces.EXTENSION"

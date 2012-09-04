@@ -2,10 +2,11 @@ from setuptools import setup, find_packages
 import os
 from os.path import join
 
+NAME = 'eea.uberlisting'
 PATH = NAME.split('.') + ['version.txt']
 VERSION = open(join(*PATH)).read().strip()
 
-setup(name='eea.uberlisting',
+setup(name=NAME,
       version=VERSION,
       description="Plone product for ajax display of available templates",
       long_description=open("README.txt").read() + "\n" +
