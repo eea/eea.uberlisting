@@ -1,6 +1,6 @@
-=============
-EEA Depiction
-=============
+================
+EEA Uberlilsting
+================
 `EEA Uberlilsting`_  enhances and extends the listing layouts capabilities of Plone.
 
 It provides a set of attractive listing templates which can be applied 
