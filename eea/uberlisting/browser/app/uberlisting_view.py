@@ -2,7 +2,7 @@
 """
 from Products.Five import BrowserView
 
-class SmartView(BrowserView):
+class UberlistingView(BrowserView):
     """ Returns smartTemplate if present in request
     """
 

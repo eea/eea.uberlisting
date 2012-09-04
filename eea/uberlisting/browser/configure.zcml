@@ -7,9 +7,14 @@
 
     <browser:page
         for="*"
-        name="smart_view"
-        class=".app.smart_view.SmartView"
+        name="uberlisting_view"
+        template="zpt/uberlisting_view.pt"
+        class=".app.uberlisting_view.UberlistingView"
         permission="zope.Public"
         />
+
+    <browser:resourceDirectory
+        name="eea.uberlisting.js"
+        directory="./js" />
 
 </configure>
