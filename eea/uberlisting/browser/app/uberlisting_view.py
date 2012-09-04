@@ -21,6 +21,13 @@ class UberlistingView(BrowserView):
         name = self.getTemplateName()
         return getattr(self.context, name)
 
+    def getAvailableTemplateNames(self):
+        """ Available templates on context minus our listing
+        """
+        views = self.context.getAvailableLayouts()
+        views = [view for view in views if view[0] != 'uberlisting_view']
+        return views 
+
     def getListingMacro(self):
         """ Macro
         """

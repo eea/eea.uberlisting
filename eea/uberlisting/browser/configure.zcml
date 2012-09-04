@@ -5,6 +5,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="eea">
 
+    <!-- Browser Pages -->
     <browser:page
         for="*"
         name="uberlisting_view"
@@ -13,11 +14,13 @@
         permission="zope.Public"
         />
 
+    <!-- Browser resources -->
+    <browser:resourceDirectory
+        name="eea.uberlisting.css"
+        directory="./css" />
+
     <browser:resourceDirectory
         name="eea.uberlisting.js"
         directory="./js" />
 
-    <browser:resourceDirectory
-        name="eea.uberlisting.css"
-        directory="./css" />
 </configure>
