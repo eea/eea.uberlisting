@@ -1,3 +1,4 @@
+/* readCookie and createCookie from Plone cookie_functions.js */ 
 jQuery(document).ready(function($) {
     var $smart_view_switch = $('#smart-view-switch');
     // hide from display menu the smart view if faceted navigation is enabled
@@ -22,20 +23,22 @@ jQuery(document).ready(function($) {
         };
 
       var loadCookieSetttings =  function() {
-            if ($.bbq.getState('smartTemplate') === undefined && readCookie('smartTemplate')) {
+            if ($.bbq.getState('smartTemplate') === undefined && window.readCookie('smartTemplate')) {
                 $.bbq.pushState({
-                    'smartTemplate': readCookie('smartTemplate')
+                    'smartTemplate': window.readCookie('smartTemplate')
                 });
             }
         };
 
      var loadContent = function() {
             var $smart_view_content = $('#smart-view-content');
-            $smart_view_content.html('<img src="++resource++faceted_images/ajax-loader.gif" />');
+            $smart_view_content.html('<img src="ajax-loader.gif" />');
             var url = $.param.querystring($.bbq.getState('smartTemplate'), $.param.querystring());
+                url = url + '?ajax_load=1';
             var EEA = window.EEA;
             $.get(url, function(data) {
-                $smart_view_content.html(data);
+                var $data = $(data).find('#content-core').contents();
+                $smart_view_content.html($data);
                 if(url.indexOf('tabs') !== -1 ) {
                     // run logic for tabs from eea-tabs.js
                     EEA.eea_tabs();
@@ -63,13 +66,13 @@ jQuery(document).ready(function($) {
             // #3370 - IE7 does not pick up on hash changes
             var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
             if (window.Faceted) {
-                if (Faceted.Window.width && ie6or7) {
-                    Faceted.Query = Faceted.URLHandler.hash2query(location.hash);
-                    $(Faceted.Events).trigger(Faceted.Events.QUERY_CHANGED);
-                    Faceted.Form.do_form_query();
+                if (window.Faceted.Window.width && ie6or7) {
+                    window.Faceted.Query = window.Faceted.URLHandler.hash2query(location.hash);
+                    $(window.Faceted.Events).trigger(window.Faceted.Events.QUERY_CHANGED);
+                    window.Faceted.Form.do_form_query();
                 }
             }
-            createCookie('smartTemplate', smartTemplate);
+            window.createCookie('smartTemplate', smartTemplate);
         });
 
         loadCookieSetttings();
@@ -78,7 +81,7 @@ jQuery(document).ready(function($) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
             if (window.Faceted) {
-                if (!Faceted.Window.width && ($.bbq.getState('smartTemplate') !== undefined)) {
+                if (!window.Faceted.Window.width && ($.bbq.getState('smartTemplate') !== undefined)) {
                     markSelectedButton();
                     loadContent();
                 }
@@ -86,4 +89,3 @@ jQuery(document).ready(function($) {
         }).trigger('hashchange');
     }
 });
-
