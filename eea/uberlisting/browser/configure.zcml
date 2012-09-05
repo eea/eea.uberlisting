@@ -8,8 +8,7 @@
     <!-- Browser Pages -->
     <browser:page
         for="*"
-        name="uberlisting_view"
-        template="zpt/uberlisting_view.pt"
+        name="uberlisting_view_logic"
         class=".app.uberlisting_view.UberlistingView"
         permission="zope.Public"
         />
