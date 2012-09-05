@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="Plone Skins Tools">
+
+    <object name="uberlisting_imgs" meta_type="Filesystem Directory View"
+        directory="eea.uberlisting:skins/uberlisting_imgs" />
+    <object name="uberlisting_templates" meta_type="Filesystem Directory View"
+        directory="eea.uberlisting:skins/uberlisting_templates" />
+
+    <skin-path name="*">
+        <layer name="uberlisting_imgs" insert-after="custom" />
+        <layer name="uberlisting_templates" insert-after="uberlisting_imgs" />
+    </skin-path>
+
+</object>

@@ -5,9 +5,10 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="eea">
 
-  <five:registerPackage package="." initialize=".initialize" />
-
   <include package=".browser" />
+  <include file="skins.zcml" />
+
+  <five:registerPackage package="." initialize=".initialize" />
 
   <genericsetup:registerProfile
       name="default"
