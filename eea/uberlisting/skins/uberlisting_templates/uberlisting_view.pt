@@ -14,11 +14,18 @@
             portal_url portal_url|context/@@plone_portal_state/portal_url;
             ">
                 <ul id="smart-view-switch" class="eea-horizontal-list eea-no-list-style eea-rounded-corners" tal:define="templateName smartView/getTemplateName">
-                <tal:template repeat="template templates"  tal:condition="templates"> 
-                <li  tal:attributes="data-templateId python:template[0]">
-                        <img i18n:attributes="title;" tal:attributes="src python: portal_url + '/' + template[0] + '.png'; title python:template[1]" />
-                </li>
-                </tal:template>
+                    <tal:template_images repeat="template templates"  tal:condition="templates"> 
+                        <li  tal:attributes="data-templateId python:template[0]" tal:define="img python:template[0] + '.png'" 
+                             tal:condition="python:exists('context/%s' % img)">
+                            <img i18n:attributes="title;" tal:attributes="src python: portal_url + '/' + template[0] + '.png'; title python:template[1]" />
+                        </li>
+                    </tal:template_images>
+                    <tal:template_no_images repeat="template templates"  tal:condition="templates"> 
+                        <li  tal:attributes="data-templateId python:template[0]" tal:define="img python:template[0] + '.png'" 
+                            tal:condition="python:not exists('context/%s' % img)">
+                            <a href="#" tal:content="python:template[1]" />
+                        </li>
+                    </tal:template_no_images>
                 </ul>
                 <div id="smart-view-content">
                     <metal:block metal:use-macro="smartView/getListingMacro" />
