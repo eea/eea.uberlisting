@@ -14,16 +14,13 @@
 #smart-view-switch li.last {
     border-right: 0;
 }
-#smart-view-switch li img {
+#smart-view-switch img {
     margin: 0;
     padding: 0;
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
-#smart-view-switch li.selected {
-    background: white;
-}
-#smart-view-switch li.selected img {
+#smart-view-switch a.selected img {
     opacity: 1;
     filter: alpha(opacity=100);
 }
