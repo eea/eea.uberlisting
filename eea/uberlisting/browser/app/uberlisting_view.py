@@ -9,8 +9,15 @@ class UberlistingView(BrowserView):
     def getTemplateName(self):
         """ Name
         """
-        if 'smartTemplate' in self.request:
-            return self.request['smartTemplate']
+        # if we are on faceted navigation we will also have smartTemplate[]
+        smartTemplate = 'smartTemplate[]' if 'smartTemplate[]' \
+                                                    in self.request else ''
+        if smartTemplate:
+            return self.request[smartTemplate]
+        smartTemplate = 'smartTemplate' if 'smartTemplate'\
+                                                    in self.request else ''
+        if smartTemplate:
+            return self.request[smartTemplate]
         elif self.context.hasProperty('defaultSmartTemplate'):
             return self.context.getProperty('defaultSmartTemplate')
         return 'folder_listing'
