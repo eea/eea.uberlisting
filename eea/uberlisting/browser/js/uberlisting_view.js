@@ -6,7 +6,7 @@ window.Uberlisting = {};
 window.Uberlisting.Events = {};
 window.Uberlisting.Events.Success = 'Success';
 
-jQuery(function($, window) {
+jQuery(document).ready(function($) {
         "use strict";
         var $smart_view_switch = $('#smart-view-switch');
         var faceted = $("#faceted-form").length;
@@ -68,7 +68,7 @@ jQuery(function($, window) {
             }, 'html');
         };
 
-        $("#smart-view-switch").delegate('a', 'click', function(evt) {
+        $("#content").delegate('#smart-view-switch a', 'click', function(evt) {
             var smartTemplate = $(this).data().templateid;
             $.bbq.pushState({
                 'smartTemplate': smartTemplate
@@ -112,4 +112,4 @@ jQuery(function($, window) {
             });
         }
 
-})(jQuery, window);
+});

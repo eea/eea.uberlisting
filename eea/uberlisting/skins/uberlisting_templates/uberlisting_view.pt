@@ -25,7 +25,7 @@
                     <tal:template_no_images repeat="template templates"  tal:condition="templates"> 
                         <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
                              tal:condition="python:not exists('context/%s' % img)">
-                            <a tal:attributes="href string:${templateId}; data-templateId templateId" tal:content="python:template[1]" />
+                            <a tal:attributes="href string:${templateId}; data-templateId templateId" tal:content="python:template[1]" class='no-img' />
                         </li>
                     </tal:template_no_images>
                 </ul>
