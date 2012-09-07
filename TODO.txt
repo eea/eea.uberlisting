@@ -1,0 +1,7 @@
+EEA Uberlisting todos:
+ - Faceted Navigation doesn't change listing when using back button
+ - Gallery view javascript needs to be reloaded on ajax call
+ - Plone 4 buildout added to the root of the site
+ - Jenkins job
+ - Package forked to collective
+ - Update README to document latest additions and requirements
