@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
     "use strict";
     var $smart_view_switch = $('#smart-view-switch');
     var faceted = $("#faceted-form").length;
+    var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
 
     // bind our success handler only if we have EEA object
     if ( window.EEA ) {
@@ -80,15 +81,13 @@ jQuery(document).ready(function($) {
         $.bbq.pushState({
             'smartTemplate': smartTemplate
         });
-        // #3370 - IE7 does not pick up on hash changes
-        var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
         if ( faceted ) {
-            if ( window.Faceted.Window.width && ie6or7 ) {
+            // #3370 - IE7 does not pick up on hash changes
+            if ( ie6or7 ) {
                 window.Faceted.Query = window.Faceted.URLHandler.hash2query(window.location.hash);
                 $(window.Faceted.Events).trigger(window.Faceted.Events.QUERY_CHANGED);
                 window.Faceted.Form.do_form_query();
             }
-
         }
         window.createCookie('smartTemplate', smartTemplate);
         evt.preventDefault();
@@ -96,10 +95,10 @@ jQuery(document).ready(function($) {
 
 
     if ( faceted ) {
+        loadCookieSetttings();
         $(window.Faceted.Events).bind('FACETED-AJAX-QUERY-SUCCESS', function(evt){
             var smart_view = $("#smart-view-content");
             if ( smart_view.length ) {
-                loadCookieSetttings();
                 markSelectedButton();
                 smart_view.find('.listingBar').remove();
                 $(window.Uberlisting.Events).trigger(window.Uberlisting.Events.Success);
