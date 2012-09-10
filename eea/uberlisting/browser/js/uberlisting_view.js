@@ -13,20 +13,20 @@ jQuery(document).ready(function($) {
     var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
 
     // bind our success handler only if we have EEA object
-    if ( window.EEA ) {
+    if (window.EEA) {
         $(window.Uberlisting.Events).bind(window.Uberlisting.Events.Success, function(evt) {
             var uberTemplate = $.bbq.getState('uberTemplate');
-            if( uberTemplate === 'folder_tabs_view' ) {
+            if (uberTemplate === 'folder_tabs_view') {
                 // run logic for tabs from eea-tabs.js
                 window.EEA.eea_tabs();
                 return;
             }
-            if( uberTemplate === 'folder_accordion_view' ) {
+            if (uberTemplate === 'folder_accordion_view') {
                 // run logic for tabs from eea-accordion.js
                 window.EEA.eea_accordion();
                 return;
             }
-            if( uberTemplate === 'gallery_view' ) {
+            if (uberTemplate === 'gallery_view') {
                 $('#galleryView').eeaGalleryView();
             }
         });
@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
     };
 
     var loadCookieSetttings =  function() {
-        if ( $.bbq.getState('uberTemplate') === undefined && window.readCookie('uberTemplate') ) {
+        if ($.bbq.getState('uberTemplate') === undefined && window.readCookie('uberTemplate')) {
             $.bbq.pushState({
                 'uberTemplate': window.readCookie('uberTemplate')
             });
@@ -81,9 +81,9 @@ jQuery(document).ready(function($) {
         $.bbq.pushState({
             'uberTemplate': uberTemplate
         });
-        if ( faceted ) {
+        if (faceted) {
             // #3370 - IE7 does not pick up on hash changes
-            if ( ie6or7 ) {
+            if (ie6or7) {
                 window.Faceted.Query = window.Faceted.URLHandler.hash2query(window.location.hash);
                 $(window.Faceted.Events).trigger(window.Faceted.Events.QUERY_CHANGED);
                 window.Faceted.Form.do_form_query();
@@ -93,18 +93,16 @@ jQuery(document).ready(function($) {
         evt.preventDefault();
     });
 
-
-    if ( faceted ) {
+    if (faceted) {
         loadCookieSetttings();
         $(window.Faceted.Events).bind('FACETED-AJAX-QUERY-SUCCESS', function(evt){
             var uber_view = $("#uber-view-content");
-            if ( uber_view.length ) {
+            if (uber_view.length) {
                 markSelectedButton();
                 uber_view.find('.listingBar').remove();
                 $(window.Uberlisting.Events).trigger(window.Uberlisting.Events.Success);
             }
         });
-
     }
 
     if ($uber_view_switch.length) {
@@ -113,7 +111,7 @@ jQuery(document).ready(function($) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
             markSelectedButton();
-            if(!faceted){
+            if (!faceted) {
                 loadContent();
             }
         });
