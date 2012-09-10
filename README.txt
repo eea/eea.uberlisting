@@ -18,9 +18,47 @@ Example of listing templates are:
   * tabs view: folder overview with tabs
   * accordion view: folder_overview with accordion style (aka vertical tabs)
 
-Optionally you can get enhanced thumbnails if used together with eea.depiction
-
 .. contents::
+
+Tips and tricks
+===============
+
+Disable templates from showing up in the Uberlisting View
+---------------------------------------------------------
+
+  * In ZMI > context > manage_properties: Add a '*lines*' property named **bannedUberlistingTemplates**.
+
+    Here add one by one the template id's that you would like to be skipped from the listing.
+
+    ex: folder_summary_view
+
+Set default template when visiting template for first time
+----------------------------------------------------------
+
+  * In ZMI > context > manage_properties: Add a '*string*' property named **defaultUberlistingTemplate**
+    and add the template id that should be used as the default template.
+
+    ex: folder_summary_view
+
+    By default if this property isn't set and no cookie is present with the name of the default template
+    then folder_listing will be used as default.
+
+Choose the right templates to use for this package
+--------------------------------------------------
+  
+  * The python logic that retrieves the contents of the template listings expects the template to 
+    implement the **listing** macro. 
+    
+    By default all of the Plone templates implement this macro so all 
+    templates that come from Plone and those that implement a listing macro to list results should 
+    work with the Uberlisting View.
+
+Get enhanced thumbnails when used with eea.depiction
+----------------------------------------------------
+
+  * If you have eea.depiction installed you can configure a fallback image for the contenttypes that
+    do not have an image field by default, allowing the content to be displayed in  a view where the 
+    listing would look better with images like album view.
 
 
 Installation
@@ -61,10 +99,10 @@ Dependencies
 
 `EEA Uberlisting`_ has the following dependencies:
   - Plone 4+
-  - eea.jquery 
+  - `EEA jQuery`_
 
 This package also supports eea.depiction. Thus the following dependencies are optional:
-  - eea.depiction
+  - `EEA Depiction`_
 
 
 Source code
@@ -95,6 +133,8 @@ Funding and project management
 EEA_ - European Environment Agency (EU)
 
 .. _EEA: http://www.eea.europa.eu/
-.. _`EEA Uberlisting: http://eea.github.com/docs/eea.uberlisting
+.. _`EEA Uberlisting`: http://eea.github.com/docs/eea.uberlisting
+.. _`EEA jQuery`: http://eea.github.com/docs/eea.jquery
+.. _`EEA Depiction`: http://eea.github.com/docs/eea.depiction
 .. _`plone.recipe.zope2instance`: http://pypi.python.org/pypi/plone.recipe.zope2instance
 .. _`zc.buildout`: http://pypi.python.org/pypi/zc.buildout
