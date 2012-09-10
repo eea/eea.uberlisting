@@ -6,7 +6,7 @@ EEA Uberlisting
 It provides a set of attractive listing templates which can be applied 
 to any folderish content type in  Plone. 
 
-Additionally, it adds a single smart view listing which gives the web visitor the ability
+Additionally, it adds a single 'smart' view listing which gives the web visitor the ability
 to switch the listing view, instead of having a fixed one. 
 
 Example of listing templates are: 
@@ -61,6 +61,7 @@ Dependencies
 
 `EEA Uberlisting`_ has the following dependencies:
   - Plone 4+
+  - eea.jquery 
 
 This package also supports eea.depiction. Thus the following dependencies are optional:
   - eea.depiction

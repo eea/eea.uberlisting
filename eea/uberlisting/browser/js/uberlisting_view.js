@@ -8,61 +8,61 @@ window.Uberlisting.Events.Success = 'Success';
 
 jQuery(document).ready(function($) {
     "use strict";
-    var $smart_view_switch = $('#smart-view-switch');
+    var $uber_view_switch = $('#uber-view-switch');
     var faceted = $("#faceted-form").length;
     var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
 
     // bind our success handler only if we have EEA object
     if ( window.EEA ) {
         $(window.Uberlisting.Events).bind(window.Uberlisting.Events.Success, function(evt) {
-            var smartTemplate = $.bbq.getState('smartTemplate');
-            if( smartTemplate === 'folder_tabs_view' ) {
+            var uberTemplate = $.bbq.getState('uberTemplate');
+            if( uberTemplate === 'folder_tabs_view' ) {
                 // run logic for tabs from eea-tabs.js
                 window.EEA.eea_tabs();
                 return;
             }
-            if( smartTemplate === 'folder_accordion_view' ) {
+            if( uberTemplate === 'folder_accordion_view' ) {
                 // run logic for tabs from eea-accordion.js
                 window.EEA.eea_accordion();
                 return;
             }
-            if( smartTemplate === 'gallery_view' ) {
+            if( uberTemplate === 'gallery_view' ) {
                 $('#galleryView').eeaGalleryView();
             }
         });
     }
 
     var markSelectedButton = function () {
-        var smartTemplate = $.bbq.getState('smartTemplate');
-        var $smart_view_switch = $("#smart-view-switch");
-        $smart_view_switch.find('.selected').removeClass('selected');
-        $smart_view_switch.find('a').each(function(i) {
+        var uberTemplate = $.bbq.getState('uberTemplate');
+        var $uber_view_switch = $("#uber-view-switch");
+        $uber_view_switch.find('.selected').removeClass('selected');
+        $uber_view_switch.find('a').each(function(i) {
             var $this = $(this);
             var templateID = $this.data().templateid;
-            if (templateID === smartTemplate) {
+            if (templateID === uberTemplate) {
                 $this.addClass('selected');
             }
         });
     };
 
     var loadCookieSetttings =  function() {
-        if ( $.bbq.getState('smartTemplate') === undefined && window.readCookie('smartTemplate') ) {
+        if ( $.bbq.getState('uberTemplate') === undefined && window.readCookie('uberTemplate') ) {
             $.bbq.pushState({
-                'smartTemplate': window.readCookie('smartTemplate')
+                'uberTemplate': window.readCookie('uberTemplate')
             });
         }
     };
 
     var loadContent = function() {
-        var $smart_view_content = $('#smart-view-content');
-        $smart_view_content.html('<img src="ajax-loader.gif" />');
-        var url = $.param.querystring($.bbq.getState('smartTemplate'), $.param.querystring());
+        var $uber_view_content = $('#uber-view-content');
+        $uber_view_content.html('<img src="ajax-loader.gif" />');
+        var url = $.param.querystring($.bbq.getState('uberTemplate'), $.param.querystring());
         url = url + '?ajax_load=1';
         var EEA = window.EEA;
         $.get(url, function(data) {
             var $data = $(data).find('#content-core').contents();
-            $smart_view_content.html($data);
-            var listing_a = $smart_view_content.find('.listingBar a');
+            $uber_view_content.html($data);
+            var listing_a = $uber_view_content.find('.listingBar a');
 
             if (listing_a.length) {
                 listing_a.each(function(i) {
@@ -76,10 +76,10 @@ jQuery(document).ready(function($) {
         }, 'html');
     };
 
-    $("#content").delegate('#smart-view-switch a', 'click', function(evt) {
-        var smartTemplate = $(this).data().templateid;
+    $("#content").delegate('#uber-view-switch a', 'click', function(evt) {
+        var uberTemplate = $(this).data().templateid;
         $.bbq.pushState({
-            'smartTemplate': smartTemplate
+            'uberTemplate': uberTemplate
         });
         if ( faceted ) {
             // #3370 - IE7 does not pick up on hash changes
@@ -89,7 +89,7 @@ jQuery(document).ready(function($) {
                 window.Faceted.Form.do_form_query();
             }
         }
-        window.createCookie('smartTemplate', smartTemplate);
+        window.createCookie('uberTemplate', uberTemplate);
         evt.preventDefault();
     });
 
@@ -97,17 +97,17 @@ jQuery(document).ready(function($) {
     if ( faceted ) {
         loadCookieSetttings();
         $(window.Faceted.Events).bind('FACETED-AJAX-QUERY-SUCCESS', function(evt){
-            var smart_view = $("#smart-view-content");
-            if ( smart_view.length ) {
+            var uber_view = $("#uber-view-content");
+            if ( uber_view.length ) {
                 markSelectedButton();
-                smart_view.find('.listingBar').remove();
+                uber_view.find('.listingBar').remove();
                 $(window.Uberlisting.Events).trigger(window.Uberlisting.Events.Success);
             }
         });
 
     }
 
-    if ($smart_view_switch.length) {
+    if ($uber_view_switch.length) {
         loadCookieSetttings();
         $(window).bind('hashchange', function(e) {
             // If faceted navigation is enabled, we don't have to make our own

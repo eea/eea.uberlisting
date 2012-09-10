@@ -9,11 +9,11 @@
         <metal:block use-macro="context/folder_listing/macros/content-core">
             <metal:entries fill-slot="entries">
 
-            <metal:listing define-macro="listing" tal:define="smartView nocall:context/@@uberlisting_view_logic;
-                templates smartView/getAvailableTemplateNames;
+            <metal:listing define-macro="listing" tal:define="uberView nocall:context/@@uberlisting_view_logic;
+                templates uberView/getAvailableTemplateNames;
                 portal_url portal_url|context/@@plone_portal_state/portal_url;
                 ">
-                <ul id="smart-view-switch" class="eea-horizontal-list eea-no-list-style eea-rounded-corners" tal:define="templateName smartView/getTemplateName">
+                <ul id="uber-view-switch" class="eea-horizontal-list eea-no-list-style eea-rounded-corners" tal:define="templateName uberView/getTemplateName">
                     <tal:template_images repeat="template templates"  tal:condition="templates"> 
                         <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
                              tal:condition="python:exists('context/%s' % img)">
@@ -29,8 +29,8 @@
                         </li>
                     </tal:template_no_images>
                 </ul>
-                <div id="smart-view-content">
-                    <metal:block metal:use-macro="smartView/getListingMacro" />
+                <div id="uber-view-content">
+                    <metal:block metal:use-macro="uberView/getListingMacro" />
                 </div>
             </metal:listing>
 

@@ -1,37 +1,37 @@
-#smart-view-switch {
+#uber-view-switch {
     margin: 2em 0 !important;
     width: 100%;
     height: 32px;
     background: white;
     border: 1px solid #ccc;
 }
-#smart-view-switch li {
+#uber-view-switch li {
     cursor: pointer;
     border-right: 1px solid #ccc;
     margin: 0;
     list-style: none outside none;
     line-height: 2.5em;
 }
-#smart-view-switch li.last {
+#uber-view-switch li.last {
     border-right: 0;
 }
-#smart-view-switch a {
+#uber-view-switch a {
     padding: 0.6em 0.7em;
 
 }
-#smart-view-switch a.no-img {
+#uber-view-switch a.no-img {
     padding: 0.6em 1.1em;
 }
-#smart-view-switch img {
+#uber-view-switch img {
     margin: 0;
     padding: 0;
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
-#smart-view-switch a.selected {
+#uber-view-switch a.selected {
     background: #F3F3F3;
 }
-#smart-view-switch a.selected img {
+#uber-view-switch a.selected img {
     opacity: 1;
     filter: alpha(opacity=100);
 }

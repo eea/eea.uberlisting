@@ -3,23 +3,23 @@
 from Products.Five import BrowserView
 
 class UberlistingView(BrowserView):
-    """ Returns smartTemplate if present in request
+    """ Returns uberTemplate if present in request
     """
 
     def getTemplateName(self):
         """ Name
         """
-        # if we are on faceted navigation we will also have smartTemplate[]
-        smartTemplate = 'smartTemplate[]' if 'smartTemplate[]' \
+        # if we are on faceted navigation we will also have uberTemplate[]
+        uberTemplate = 'uberTemplate[]' if 'uberTemplate[]' \
                                                     in self.request else ''
-        if smartTemplate:
-            return self.request[smartTemplate]
-        smartTemplate = 'smartTemplate' if 'smartTemplate'\
+        if uberTemplate:
+            return self.request[uberTemplate]
+        uberTemplate = 'uberTemplate' if 'uberTemplate'\
                                                     in self.request else ''
-        if smartTemplate:
-            return self.request[smartTemplate]
-        elif self.context.hasProperty('defaultSmartTemplate'):
-            return self.context.getProperty('defaultSmartTemplate')
+        if uberTemplate:
+            return self.request[uberTemplate]
+        elif self.context.hasProperty('defaultUberlistingTemplate'):
+            return self.context.getProperty('defaultUberlistingTemplate')
         return 'folder_listing'
 
     def getTemplate(self):
@@ -32,7 +32,12 @@ class UberlistingView(BrowserView):
         """ Available templates on context minus our listing
         """
         views = self.context.getAvailableLayouts()
-        views = [view for view in views if view[0] != 'uberlisting_view']
+        # filter views if the object has a lines property with the id's of
+        # the templates that shouldn't be added to the uberlisting_view
+        banned_views = list(self.context.getProperty(
+                                            'bannedUberlistingTemplates', ''))
+        banned_views.append('uberlisting_view')
+        views = [view for view in views if view[0] not in banned_views]
         return views 
 
     def getListingMacro(self):
