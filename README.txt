@@ -3,18 +3,15 @@ EEA Uberlisting
 ================
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-It provides a set of attractive listing templates which can be applied 
-to any folderish content type in  Plone. 
+| It provides a set of attractive listing templates which can be applied 
+| to any folderish content type in  Plone. 
+|
+| By default it adds a single **uberlisting_view** view method to the **Folder** Content Type, which gives   the web visitor the ability to switch the listing view with the views that are available for that Content Type, instead of having a fixed one.
+ 
 
-Additionally, it adds a single 'smart' view listing which gives the web visitor the ability
-to switch the listing view, instead of having a fixed one. 
+By default this package also comes with the following listing templates which can be used as listing templates: 
 
-Example of listing templates are: 
-
-  * listing view: same as in standard plone
-  * summary view: same as standard plone
-  * album view: same as standard plone
-  * folder overview: summary view of sub-folders and its top content (2-level view) 
+  * subfolder view: summary view of sub-folders and its top content (2-level view) 
   * tabs view: folder overview with tabs
   * accordion view: folder_overview with accordion style (aka vertical tabs)
 
