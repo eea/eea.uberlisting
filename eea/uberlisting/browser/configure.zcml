@@ -9,7 +9,7 @@
     <browser:page
         for="*"
         name="uberlisting_view_logic"
-        class=".app.uberlisting_view.UberlistingView"
+        class=".app.view.UberlistingView"
         permission="zope.Public"
         />
 
