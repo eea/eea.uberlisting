@@ -1,3 +1,5 @@
+""" Test doctests module
+"""
 import unittest
 
 #from zope.testing import doctestunit
@@ -13,21 +15,30 @@ import eea.uberlisting
 
 
 class TestCase(ptc.PloneTestCase):
-
+    """ TestSuite
+    """
     class layer(PloneSite):
+        """ Test layer
+        """
 
         @classmethod
         def setUp(cls):
+            """ Setup
+            """
             fiveconfigure.debug_mode = True
             ztc.installPackage(eea.uberlisting)
             fiveconfigure.debug_mode = False
 
         @classmethod
         def tearDown(cls):
+            """ Tear down
+            """
             pass
 
 
 def test_suite():
+    """ Suite
+    """
     return unittest.TestSuite([
 
         # Unit tests
