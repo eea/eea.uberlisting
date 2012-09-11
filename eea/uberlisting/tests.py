@@ -41,9 +41,9 @@ def test_suite():
 
 
         # Integration tests that use PloneTestCase
-        #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='eea.uberlisting',
-        #    test_class=TestCase),
+        ztc.ZopeDocFileSuite(
+            'README.txt', package='eea.uberlisting',
+            test_class=TestCase),
 
         #ztc.FunctionalDocFileSuite(
         #    'browser.txt', package='eea.uberlisting',
