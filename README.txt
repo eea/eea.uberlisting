@@ -3,13 +3,16 @@ EEA Uberlisting
 ================
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-| It provides a set of attractive listing templates which can be applied 
-| to any folderish content type in  Plone. 
+| It provides a set of attractive listing templates which can be applied to any 
+  folderish content type in Plone. 
 |
-| By default it adds a single **uberlisting_view** view method to the **Folder** Content Type, which gives   the web visitor the ability to switch the listing view with the views that are available for that Content Type, instead of having a fixed one.
- 
-
-By default this package also comes with the following listing templates which can be used as listing templates: 
+| By default it adds a single **uberlisting_view** view method to the **Folder** 
+  Content Type, which when set as the default View gives the web visitor the 
+  ability to switch between the      views that are available for that Content Type,
+  instead of having a fixed one, all from the same template.
+|
+| This package also comes with the following listing templates which can be used 
+  as listing templates: 
 
   * subfolder view: summary view of sub-folders and its top content (2-level view) 
   * tabs view: folder overview with tabs
@@ -23,39 +26,62 @@ Tips and tricks
 Disable templates from showing up in the Uberlisting View
 ---------------------------------------------------------
 
-  * In ZMI > context > manage_properties: Add a '*lines*' property named **bannedUberlistingTemplates**.
+  * In ZMI > context > manage_properties: Add a '*lines*' property named 
+    **bannedUberlistingTemplates**.
 
-    Here add one by one the template id's that you would like to be skipped from the listing.
+    Here add one by one the template id's that you would like to be skipped 
+    from the listing.
 
     ex: folder_summary_view
 
 Set default template when visiting template for first time
 ----------------------------------------------------------
 
-  * In ZMI > context > manage_properties: Add a '*string*' property named **defaultUberlistingTemplate**
-    and add the template id that should be used as the default template.
+  * In ZMI > context > manage_properties: Add a '*string*' property named 
+    **defaultUberlistingTemplate** and add the template id that should be used
+    as the default template.
 
     ex: folder_summary_view
 
-    By default if this property isn't set and no cookie is present with the name of the default template
-    then folder_listing will be used as default.
+    By default if this property isn't set and no cookie is present with the name
+    of the default template then **folder_listing** will be used as default.
 
 Choose the right templates to use for this package
 --------------------------------------------------
   
-  * The python logic that retrieves the contents of the template listings expects the template to 
-    implement the **listing** macro. 
+  * The python logic that retrieves the contents of the template listings 
+    expects the template to implement the **listing** macro. 
     
     By default all of the Plone templates implement this macro so all 
-    templates that come from Plone and those that implement a listing macro to list results should 
-    work with the Uberlisting View.
+    templates that come from Plone and those that implement a listing macro 
+    to list results should work with the Uberlisting View.
+
+Get listing of templates as images instead of template title name
+-----------------------------------------------------------------
+
+  * This packages looks for a png image to use for the views listing in the 
+    format of template id + '.png'.
+
+    ex: folder_summary_view.png
+   
+    We have provides some images for the common Plone templates as well as
+    some for our own templates, if you need a different style for the icons you can
+    customize them TTW or you can have a skin layer before **uberlisting_imgs** with
+    images that have the same name.
+
+  * If no images are found then the template name will be displayed in the listing.
+
+  * If you don't want to have the listing of templates with images and you would
+    prefer to have only template name then In ZMI > context > manage_properties:
+    Add a '*boolean*' property named '**noUberlistingTemplateImages**'
 
 Get enhanced thumbnails when used with eea.depiction
 ----------------------------------------------------
 
-  * If you have eea.depiction installed you can configure a fallback image for the contenttypes that
-    do not have an image field by default, allowing the content to be displayed in  a view where the 
-    listing would look better with images like album view.
+  * If you have eea.depiction installed you can configure a fallback image for
+    the contenttypes that do not have an image field by default, allowing the 
+    content to be displayed in  a view where the listing would look better 
+    with images like album view.
 
 
 Installation

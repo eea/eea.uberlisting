@@ -40,6 +40,12 @@ class UberlistingView(BrowserView):
         views = [view for view in views if view[0] not in banned_views]
         return views 
 
+    def noUberlistingTemplateImages(self):
+        """ Don't render template listing with images if we have a certain
+            property
+        """
+        return self.context.hasProperty('noUberlistingTemplateImages')
+
     def getListingMacro(self):
         """ Macro
         """

@@ -12,9 +12,10 @@
             <metal:listing define-macro="listing" tal:define="uberView nocall:context/@@uberlisting_view_logic;
                 templates uberView/getAvailableTemplateNames;
                 portal_url portal_url|context/@@plone_portal_state/portal_url;
+                noImages uberView/noUberlistingTemplateImages; 
                 ">
                 <ul id="uber-view-switch" class="eea-horizontal-list eea-no-list-style eea-rounded-corners" tal:define="templateName uberView/getTemplateName">
-                    <tal:template_images repeat="template templates"  tal:condition="templates"> 
+                    <tal:template_images repeat="template templates"  tal:condition="python:templates and not noImages"> 
                         <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
                              tal:condition="python:exists('context/%s' % img)">
                              <a tal:attributes="href string:${templateId}; data-templateId templateId">
@@ -24,7 +25,7 @@
                     </tal:template_images>
                     <tal:template_no_images repeat="template templates"  tal:condition="templates"> 
                         <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
-                             tal:condition="python:not exists('context/%s' % img)">
+                             tal:condition="python:noImages or not exists('context/%s' % img)">
                             <a tal:attributes="href string:${templateId}; data-templateId templateId" tal:content="python:template[1]" class='no-img' />
                         </li>
                     </tal:template_no_images>
