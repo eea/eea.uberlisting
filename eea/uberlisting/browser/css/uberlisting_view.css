@@ -13,8 +13,8 @@
 #uber-view-switch li {
     cursor: pointer;
     display: inline-block;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #CCC
+    border-right: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
     margin: 0;
     list-style: none outside none;
     line-height: 2.5em;

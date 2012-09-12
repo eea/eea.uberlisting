@@ -5,16 +5,20 @@
 window.Uberlisting = {};
 window.Uberlisting.Events = {};
 window.Uberlisting.Events.Success = 'Success';
+window.Uberlisting.Events.Listing = 'Listing';
 
 jQuery(document).ready(function($) {
     "use strict";
     var $uber_view_switch = $('#uber-view-switch');
     var faceted = $("#faceted-form").length;
     var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
-
+    var events = window.Uberlisting.Events;
+    var $events = $(events);
+    var success_event = events.Success;
+    var listing_event = events.Listing;
     // bind our success handler only if we have EEA object
     if (window.EEA) {
-        $(window.Uberlisting.Events).bind(window.Uberlisting.Events.Success, function(evt) {
+        $events.bind(success_event, function(evt) {
             var uberTemplate = $.bbq.getState('uberTemplate');
             if (uberTemplate === 'folder_tabs_view') {
                 // run logic for tabs from eea-tabs.js
@@ -31,6 +35,30 @@ jQuery(document).ready(function($) {
             }
         });
     }
+
+    $events.bind(listing_event, function(evt) {
+        var $uber_view_content = $('#uber-view-content');
+        
+        $('.listingBar a').each(function(i) {
+            var batchQueryString = $.param.querystring(this.href);
+            var uberTemplate = $.bbq.getState('uberTemplate');
+            var newUrl = $.param.querystring(uberTemplate, batchQueryString);
+            this.href = newUrl;
+        }); 
+
+        $('#content').delegate('.listingBar ', 'click', function(evt){
+            var $target = $(evt.target);
+            var target_href = $target.attr('href');
+            $uber_view_content.html('<img src="ajax-loader.gif" />');
+            evt.preventDefault();
+            if (target_href) {
+                $.get(target_href, function(data){
+                    var $data = $(data).find('#content-core').html();
+                    $uber_view_content.html($data);
+                });
+            }
+        });
+    });
 
     var markSelectedButton = function () {
         var uberTemplate = $.bbq.getState('uberTemplate');
@@ -58,21 +86,10 @@ jQuery(document).ready(function($) {
         $uber_view_content.html('<img src="ajax-loader.gif" />');
         var url = $.param.querystring($.bbq.getState('uberTemplate'), $.param.querystring());
         url = url + '?ajax_load=1';
-        var EEA = window.EEA;
         $.get(url, function(data) {
-            var $data = $(data).find('#content-core').contents();
-            $uber_view_content.html($data);
-            var listing_a = $uber_view_content.find('.listingBar a');
-
-            if (listing_a.length) {
-                listing_a.each(function(i) {
-                    var batchQueryString = $.param.querystring(this.href);
-                    var newUrl = $.param.querystring(window.location.href, batchQueryString);
-                    this.href = newUrl;
-                });
-            }
-
-            $(window.Uberlisting.Events).trigger(window.Uberlisting.Events.Success);
+            var $data = $(data).find('#content-core');
+            $uber_view_content.html($data.html());
+            $events.trigger(success_event);
         }, 'html');
     };
 
@@ -95,18 +112,21 @@ jQuery(document).ready(function($) {
 
     if (faceted) {
         loadCookieSetttings();
+        markSelectedButton();
         $(window.Faceted.Events).bind('FACETED-AJAX-QUERY-SUCCESS', function(evt){
             var uber_view = $("#uber-view-content");
             if (uber_view.length) {
                 markSelectedButton();
-                uber_view.find('.listingBar').remove();
-                $(window.Uberlisting.Events).trigger(window.Uberlisting.Events.Success);
+                $events.trigger(success_event);
             }
         });
     }
 
     if ($uber_view_switch.length) {
         loadCookieSetttings();
+        markSelectedButton();
+       $(events).trigger(listing_event);
+
         $(window).bind('hashchange', function(e) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
