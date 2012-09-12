@@ -8,34 +8,33 @@
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -o-border-radius: 3px;
+    overflow: hidden;
 
 }
 #uber-view-switch li {
     cursor: pointer;
     display: inline-block;
     border-right: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
-    margin: 0;
+    border-bottom: 1px solid #CCC; 
+    margin: 0 0 -1px 0;
     list-style: none outside none;
-    line-height: 2.5em;
+    line-height: 2.8em;
 }
 #uber-view-switch li.last {
     border-right: 0;
 }
 #uber-view-switch a {
-    padding: 0.6em 0.7em;
+    padding: 0.7em 0.8em 0.8em 0.8em;
+    margin-left: -4px;
+}
 
-}
-#uber-view-switch a.no-img {
-    padding: 0.6em 1.1em;
-}
 #uber-view-switch img {
     margin: 0;
     padding: 0;
     opacity: 0.5;
     filter: alpha(opacity=50);
 }
-#uber-view-switch a.selected {
+#uber-view-switch a.selected, #uber-view-switch a:hover {
     background: #F3F3F3;
 }
 #uber-view-switch a.selected img {
