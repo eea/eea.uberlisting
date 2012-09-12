@@ -8,6 +8,8 @@
   <include package=".browser" />
   <include file="skins.zcml" />
 
+  <i18n:registerTranslations directory="locales" />
+
   <five:registerPackage package="." initialize=".initialize" />
 
   <genericsetup:registerProfile
