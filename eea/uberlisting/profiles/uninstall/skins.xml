@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="Plone Skins Tools">
+
+    <object name="uberlisting_imgs" remove="True" />
+    <object name="uberlisting_templates" remove="True" />
+
+    <skin-path name="*">
+        <layer name="uberlisting_imgs" remove="True" />
+        <layer name="uberlisting_templates" remove="True" />
+    </skin-path>
+
+</object>
