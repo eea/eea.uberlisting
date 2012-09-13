@@ -9,8 +9,10 @@
 
             <metal:listing define-macro="listing" tal:define="uberView nocall:context/@@uberlisting_view_logic;
                 templates uberView/getAvailableTemplateNames;
+                selectedTemplate uberView/getTemplateName;
                 portal_url portal_url|context/@@plone_portal_state/portal_url;
                 noImages uberView/noUberlistingTemplateImages; ">
+                <div id="selected-template" tal:content="selectedTemplate" />
                 <ul id="uber-view-switch"  tal:define="templateName uberView/getTemplateName">
                     <tal:template_images repeat="template templates"  tal:condition="python:templates and not noImages"> 
                         <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 

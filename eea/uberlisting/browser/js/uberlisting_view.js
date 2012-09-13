@@ -11,6 +11,7 @@ jQuery(document).ready(function($) {
     "use strict";
     var $uber_view_switch = $('#uber-view-switch');
     var faceted = $("#faceted-form").length;
+    var selected_template = $("#selected-template").text();
     var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
     var events = window.Uberlisting.Events;
     var $events = $(events);
@@ -41,7 +42,7 @@ jQuery(document).ready(function($) {
         
         $('.listingBar a').each(function(i) {
             var batchQueryString = $.param.querystring(this.href);
-            var uberTemplate = $.bbq.getState('uberTemplate');
+            var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
             var newUrl = $.param.querystring(uberTemplate, batchQueryString);
             this.href = newUrl;
         }); 
@@ -61,7 +62,7 @@ jQuery(document).ready(function($) {
     });
 
     var markSelectedButton = function () {
-        var uberTemplate = $.bbq.getState('uberTemplate');
+        var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
         var $uber_view_switch = $("#uber-view-switch");
         $uber_view_switch.find('.selected').removeClass('selected');
         $uber_view_switch.find('a').each(function(i) {
@@ -74,17 +75,22 @@ jQuery(document).ready(function($) {
     };
 
     var loadCookieSetttings =  function() {
-        if ($.bbq.getState('uberTemplate') === undefined && window.readCookie('uberTemplate')) {
+        var cookie = window.readCookie('uberTemplate');
+        if (cookie === selected_template) {
+            cookie = undefined;
+        }
+        if ($.bbq.getState('uberTemplate') === undefined && cookie) {
             $.bbq.pushState({
-                'uberTemplate': window.readCookie('uberTemplate')
+                'uberTemplate': cookie 
             });
         }
     };
 
     var loadContent = function() {
         var $uber_view_content = $('#uber-view-content');
+        var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
         $uber_view_content.html('<img src="ajax-loader.gif" />');
-        var url = $.param.querystring($.bbq.getState('uberTemplate'), $.param.querystring());
+        var url = $.param.querystring(uberTemplate, $.param.querystring());
         url = url + '?ajax_load=1';
         $.get(url, function(data) {
             var $data = $(data).find('#content-core');
@@ -123,10 +129,6 @@ jQuery(document).ready(function($) {
     }
 
     if ($uber_view_switch.length) {
-        loadCookieSetttings();
-        markSelectedButton();
-       $(events).trigger(listing_event);
-
         $(window).bind('hashchange', function(e) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
@@ -135,6 +137,10 @@ jQuery(document).ready(function($) {
                 loadContent();
             }
         });
+        loadCookieSetttings();
+        markSelectedButton();
+       $(events).trigger(listing_event);
+
     }
 
 });
