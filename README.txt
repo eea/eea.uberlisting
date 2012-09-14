@@ -3,9 +3,6 @@ EEA Uberlisting
 ================
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-| It provides a set of attractive listing templates which can be applied to any 
-  folderish content type in Plone. 
-|
 | By default it adds a single **uberlisting_view** view method to the **Folder** 
   Content Type, which when set as the default View gives the web visitor the 
   ability to switch between the views that are available for that Content Type,
