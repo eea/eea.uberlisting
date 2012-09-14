@@ -36,8 +36,10 @@ Disable templates from showing up in the Uberlisting View
     Here add one by one the template id's that you would like to be skipped 
     from the listing.
 
-    | ex: folder_summary_view
-    |     folder_contents
+    ::
+
+     ex: folder_summary_view
+         folder_contents
 
 Set default template when visiting template for first time
 ----------------------------------------------------------
@@ -68,7 +70,7 @@ Get listing of templates as images instead of template title name
 
   * If you don't want to have the listing of templates with images and you would
     prefer to have only template name then In ZMI > context > manage_properties:
-    Add a property named '**noUberlistingTemplateImages**'
+    Add a checked **boolean** property named '**noUberlistingTemplateImages**'
 
 Get enhanced thumbnails when used with eea.depiction
 ----------------------------------------------------
