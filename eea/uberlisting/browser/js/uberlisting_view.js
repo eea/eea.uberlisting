@@ -117,8 +117,6 @@ jQuery(document).ready(function($) {
     });
 
     if (faceted) {
-        loadCookieSetttings();
-        markSelectedButton();
         $(window.Faceted.Events).bind('FACETED-AJAX-QUERY-SUCCESS', function(evt){
             var uber_view = $("#uber-view-content");
             if (uber_view.length) {
@@ -140,6 +138,7 @@ jQuery(document).ready(function($) {
         loadCookieSetttings();
         markSelectedButton();
        $(events).trigger(listing_event);
+       //$(events).trigger(success_event);
 
     }
 
