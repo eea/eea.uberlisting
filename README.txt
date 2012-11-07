@@ -1,10 +1,17 @@
 ================
 EEA Uberlisting
 ================
+.. image:: http://ci.eionet.europa.eu/job/eea.uberlisting-www/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea.uberlisting-www/lastBuild
+.. image:: http://ci.eionet.europa.eu/job/eea.uberlisting-plone4/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea.uberlisting-plone4/lastBuild
+
+Introduction
+============
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-| By default it adds a single **uberlisting_view** view method to the **Folder** 
-  Content Type, which when set as the default View gives the web visitor the 
+| By default it adds a single **uberlisting_view** view method to the **Folder**
+  Content Type, which when set as the default View gives the web visitor the
   ability to switch between the views that are available for that Content Type,
   instead of having a fixed one, all from the same template.
 |
@@ -16,21 +23,21 @@ Tips and tricks
 
 Choose the right templates to use for this package
 --------------------------------------------------
-  
-  * The python logic that retrieves the contents of the template listings 
-    expects the template to implement the **listing** macro. 
-    
-    By default all of the Plone templates implement this macro so all 
-    templates that come from Plone and those that implement a listing macro 
+
+  * The python logic that retrieves the contents of the template listings
+    expects the template to implement the **listing** macro.
+
+    By default all of the Plone templates implement this macro so all
+    templates that come from Plone and those that implement a listing macro
     to list results should work with the Uberlisting View.
 
 Disable templates from showing up in the Uberlisting View
 ---------------------------------------------------------
 
-  * In ZMI > context > manage_properties: Add a '*lines*' property named 
+  * In ZMI > context > manage_properties: Add a '*lines*' property named
     **bannedUberlistingTemplates**.
 
-    Here add one by one the template id's that you would like to be skipped 
+    Here add one by one the template id's that you would like to be skipped
     from the listing.
 
     ::
@@ -41,7 +48,7 @@ Disable templates from showing up in the Uberlisting View
 Set default template when visiting template for first time
 ----------------------------------------------------------
 
-  * In ZMI > context > manage_properties: Add a '*string*' property named 
+  * In ZMI > context > manage_properties: Add a '*string*' property named
     **defaultUberlistingTemplate** and add the template id that should be used
     as the default template.
 
@@ -53,11 +60,11 @@ Set default template when visiting template for first time
 Get listing of templates as images instead of template title name
 -----------------------------------------------------------------
 
-  * This packages looks for a png image to use for the views listing in the 
+  * This packages looks for a png image to use for the views listing in the
     format of template id + '.png'.
 
     ex: folder_summary_view.png
-   
+
     We have provides some images for the common Plone templates as well as
     some for our own templates, if you need a different style for the icons you can
     customize them TTW or you can have a skin layer before **uberlisting_imgs** with
@@ -73,8 +80,8 @@ Get enhanced thumbnails when used with eea.depiction
 ----------------------------------------------------
 
   * If you have eea.depiction installed you can configure a fallback image for
-    the contenttypes that do not have an image field by default, allowing the 
-    content to be displayed in  a view where the listing would look better 
+    the contenttypes that do not have an image field by default, allowing the
+    content to be displayed in  a view where the listing would look better
     with images like album view.
 
 Get enhanced search capabilities when used with eea.facetednavigation
@@ -82,7 +89,7 @@ Get enhanced search capabilities when used with eea.facetednavigation
 
   * If you have eea.facetednavigation installed you can use uberlisting_view as
     a view for the Faceted Navigation, allowing you to combine the search capabilities
-    of it with the ability to change between views from the same template. 
+    of it with the ability to change between views from the same template.
 
 
 Installation
