@@ -1,10 +1,29 @@
 """ Controller
 """
 from Products.Five import BrowserView
+from zope.interface import alsoProvides, noLongerProvides
+from eea.uberlisting.browser.app.interfaces import IUberlistingView
+from Products.statusmessages.interfaces import IStatusMessage
+from eea.uberlisting import EEAMessageFactory as _
+
 
 class UberlistingView(BrowserView):
     """ Returns uberTemplate if present in request
     """
+
+    def __init__(self, context, request):
+        super(UberlistingView, self).__init__(context, request)
+        self.context = context
+        self.request = request
+
+    def _redirect(self, msg=''):
+        """ Redirect
+        """
+        if self.request:
+            if msg:
+                IStatusMessage(self.request).addStatusMessage(msg)
+            self.request.response.redirect(self.context.absolute_url())
+        return msg
 
     def getTemplateName(self):
         """ Name
@@ -56,3 +75,22 @@ class UberlistingView(BrowserView):
                 return macro
         error_view = getattr(self.context, 'macro_error_view')
         return error_view.macros.get('listing')
+
+    def enable(self):
+        """ Enable uberlisting view by providing IUberlistingView interface
+        """
+        translations = self.context.getTranslations()
+        for trans in translations.values():
+            alsoProvides(trans[0], IUberlistingView)
+            trans[0].reindexObject(idxs='object_provides')
+        self._redirect(_('UberlistingView enabled'))
+
+    def disable(self):
+        """ Disable uberlisting view by noLongerProviding IUberlistingView
+        interface
+        """
+        translations = self.context.getTranslations()
+        for trans in translations.values():
+            noLongerProvides(trans[0], IUberlistingView)
+            trans[0].reindexObject(idxs='object_provides')
+        self._redirect(_('UberlistingView disabled'))

@@ -5,6 +5,8 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="eea">
 
+    <include package="plone.app.controlpanel" file="permissions.zcml" />
+
     <!-- Browser Pages -->
     <browser:page
         for="*"
@@ -12,6 +14,20 @@
         class=".app.view.UberlistingView"
         permission="zope.Public"
         />
+    <browser:page for="*"
+                  name="enableUberlistingView"
+                  class=".app.view.UberlistingView"
+                  attribute="enable"
+                  permission="plone.app.controlpanel.Navigation"
+            />
+
+    <browser:page
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+                  name="disableUberlistingView"
+                  class=".app.view.UberlistingView"
+                  attribute="disable"
+                  permission="plone.app.controlpanel.Navigation"
+            />
 
     <!-- Browser resources -->
     <browser:resourceDirectory
@@ -21,5 +37,7 @@
     <browser:resourceDirectory
         name="eea.uberlisting.js"
         directory="./js" />
+
+    <interface interface=".app.interfaces.IUberlistingView" />
 
 </configure>
