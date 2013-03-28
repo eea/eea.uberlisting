@@ -4,9 +4,10 @@ Changelog
 1.1-dev - (unreleased)
 ----------------------
 
-1.1-dev - (2012-11-22)
-----------------------
+1.0 - (2012-11-22)
+------------------
 * Feature: added information for contributors
   [ciobabog refs #13892]
 - Initial release
+  [ichim-david]
 
