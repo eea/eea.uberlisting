@@ -19,6 +19,12 @@
             permission="zope.Public" />
 
     <browser:page
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+            name="configure_uberlisting_view"
+            class=".app.view.UberlistingForm"
+            permission="eea.uberlisting.configure" />
+
+    <browser:page
             for="*"
             name="enableUberlistingView"
             class=".app.view.UberlistingView"

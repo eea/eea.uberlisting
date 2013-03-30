@@ -56,8 +56,7 @@
 
         <object name="uberlisting.configure" meta_type="CMF Action"
                 i18n:domain="eea.notranslation">
-            <property name="title" i18n:translate="">Configure
-                Uberlisting View</property>
+            <property name="title" i18n:translate="">Uberlisting View</property>
             <property name="description" i18n:translate=""></property>
             <property
                     name="url_expr">string:${object/absolute_url

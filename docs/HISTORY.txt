@@ -3,6 +3,14 @@ Changelog
 
 1.1-dev - (unreleased)
 ----------------------
+* Feature: added object action that enables UberlistingView instead of relying 
+  on just setting a template.
+  [ichim-david]
+* Feature: added dedicated permissions for package usage
+  [ichim-david]
+* Feature: added onlyUberlistingTemplateWithImages property in order to display
+  only templates that have corresponding images
+  [ichim-david]
 
 1.0 - (2012-11-22)
 ------------------
