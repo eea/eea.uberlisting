@@ -4,7 +4,14 @@
 */
 window.Uberlisting = {};
 window.Uberlisting.Events = {};
+
+// success event which is triggered after the ajax load of the selected template
+// useful if the page requires some extra js code to be called
+// see our bind example below
 window.Uberlisting.Events.Success = 'Success';
+
+// Listing event which is called on page load for default template
+// useful if you want to modify the listing on page load
 window.Uberlisting.Events.Listing = 'Listing';
 
 jQuery(document).ready(function($) {
@@ -12,7 +19,8 @@ jQuery(document).ready(function($) {
     var $uber_view_switch = $('#uber-view-switch');
     var faceted = $("#faceted-form").length;
     var selected_template = $("#selected-template").text();
-    var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
+    var $content = $("#content");
+    var $uber_view_content = $('#uber-view-content');
     var events = window.Uberlisting.Events;
     var $events = $(events);
     var success_event = events.Success;
@@ -38,16 +46,13 @@ jQuery(document).ready(function($) {
     }
 
     $events.bind(listing_event, function(evt) {
-        var $uber_view_content = $('#uber-view-content');
-        
-        $('.listingBar a').each(function(i) {
+        $content.find('.listingBar a').each(function(i) {
             var batchQueryString = $.param.querystring(this.href);
             var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
-            var newUrl = $.param.querystring(uberTemplate, batchQueryString);
-            this.href = newUrl;
+            this.href = $.param.querystring(uberTemplate, batchQueryString);
         }); 
 
-        $('#content').delegate('.listingBar ', 'click', function(evt){
+        $content.delegate('.listingBar ', 'click', function(evt){
             var $target = $(evt.target);
             var target_href = $target.attr('href');
             $uber_view_content.html('<img src="ajax-loader.gif" />');
@@ -99,19 +104,11 @@ jQuery(document).ready(function($) {
         }, 'html');
     };
 
-    $("#content").delegate('#uber-view-switch a', 'click', function(evt) {
+    $content.delegate('#uber-view-switch a', 'click', function(evt) {
         var uberTemplate = $(this).data().templateid;
         $.bbq.pushState({
             'uberTemplate': uberTemplate
         });
-        if (faceted) {
-            // #3370 - IE7 does not pick up on hash changes
-            if (ie6or7) {
-                window.Faceted.Query = window.Faceted.URLHandler.hash2query(window.location.hash);
-                $(window.Faceted.Events).trigger(window.Faceted.Events.QUERY_CHANGED);
-                window.Faceted.Form.do_form_query();
-            }
-        }
         window.createCookie('uberTemplate', uberTemplate);
         evt.preventDefault();
     });
@@ -137,9 +134,7 @@ jQuery(document).ready(function($) {
         });
         loadCookieSetttings();
         markSelectedButton();
-       $(events).trigger(listing_event);
-       //$(events).trigger(success_event);
-
+        $(events).trigger(listing_event);
     }
 
 });
