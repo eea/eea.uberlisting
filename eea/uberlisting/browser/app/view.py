@@ -65,6 +65,11 @@ class UberlistingView(BrowserView):
         """
         return self.context.getProperty('noUberlistingTemplateImages')
 
+    def onlyUberlistingTemplatesWithImages(self):
+        """ Render template listing only if they have corresponding images
+        """
+        return self.context.getProperty('onlyUberlistingTemplateWithImages')
+
     def getListingMacro(self):
         """ Macro
         """
