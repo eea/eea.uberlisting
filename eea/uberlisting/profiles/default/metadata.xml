@@ -3,5 +3,6 @@
     <version>1</version>
     <dependencies>
         <dependency>profile-eea.jquery:04-bbq</dependency>
+        <dependency>profile-plone.app.z3cform:default</dependency>
     </dependencies>
 </metadata>
