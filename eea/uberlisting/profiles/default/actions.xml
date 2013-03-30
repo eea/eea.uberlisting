@@ -3,8 +3,9 @@
 <object name="portal_actions" meta_type="Plone Actions Tool"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
     <object name="object_buttons" meta_type="CMF Action Category">
+
         <object name="uberlisting.enable" meta_type="CMF Action"
-                i18n:domain="eea">
+                i18n:domain="eea.notranslation">
             <property name="title"
                       i18n:translate="">Enable Uberlisting View
             </property>
@@ -21,10 +22,11 @@
                     .provides('eea.uberlisting.browser.app.interfaces.IUberlistingView')
             </property>
             <property name="permissions">
-                <element value="Plone Site Setup: Navigation"/>
+                <element value="eea.uberlisting: Configure uberlisting"/>
             </property>
             <property name="visible">True</property>
         </object>
+
         <object name="uberlderlisting.disable" meta_type="CMF Action"
                 i18n:domain="eea.notranslation">
             <property name="title"
@@ -43,10 +45,35 @@
                                 'eea.uberlisting.browser.app.interfaces.IUberlistingView')
             </property>
             <property name="permissions">
-                <element value="Plone Site Setup: Navigation"/>
+                <element value="eea.uberlisting: Configure uberlisting"/>
             </property>
             <property name="visible">True</property>
         </object>
+
+    </object>
+
+    <object name="object" meta_type="CMF Action Category">
+
+        <object name="uberlisting.configure" meta_type="CMF Action"
+                i18n:domain="eea.notranslation">
+            <property name="title" i18n:translate="">Configure
+                Uberlisting View</property>
+            <property name="description" i18n:translate=""></property>
+            <property
+                    name="url_expr">string:${object/absolute_url
+                    }/configure_uberlisting_view</property>
+            <property name="link_target"></property>
+            <property name="icon_expr"></property>
+            <property
+                    name="available_expr">python:object.portal_type == "Folder"
+                and object.restrictedTraverse('@@plone_interface_info').provides(
+                'eea.uberlisting.browser.app.interfaces.IUberlistingView')</property>
+            <property name="permissions">
+                <element value="eea.uberlisting: Configure uberlisting"/>
+            </property>
+            <property name="visible">True</property>
+        </object>
+
     </object>
 
 </object>

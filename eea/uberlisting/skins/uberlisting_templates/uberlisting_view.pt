@@ -7,7 +7,8 @@
     <metal:content-core fill-slot="content-core">
         <metal:content define-macro="content-core">
 
-            <metal:listing define-macro="listing" tal:define="uberView nocall:context/@@uberlisting_view_logic;
+            <metal:listing define-macro="listing" tal:define="
+                uberView nocall:context/@@uberlisting_view_logic;
                 templates uberView/getAvailableTemplateNames;
                 selectedTemplate uberView/getTemplateName;
                 portal_url portal_url|context/@@plone_portal_state/portal_url;
