@@ -7,6 +7,15 @@ from Products.statusmessages.interfaces import IStatusMessage
 from eea.uberlisting import EEAMessageFactory as _
 
 
+def _redirect(self, msg=''):
+    """ Redirect
+    """
+    if self.request:
+        if msg:
+            IStatusMessage(self.request).addStatusMessage(msg)
+        self.request.response.redirect(self.context.absolute_url())
+    return msg
+
 class UberlistingView(BrowserView):
     """ Returns uberTemplate if present in request
     """
@@ -16,14 +25,6 @@ class UberlistingView(BrowserView):
         self.context = context
         self.request = request
 
-    def _redirect(self, msg=''):
-        """ Redirect
-        """
-        if self.request:
-            if msg:
-                IStatusMessage(self.request).addStatusMessage(msg)
-            self.request.response.redirect(self.context.absolute_url())
-        return msg
 
     def getTemplateName(self):
         """ Name
@@ -65,7 +66,7 @@ class UberlistingView(BrowserView):
         """
         return self.context.getProperty('noUberlistingTemplateImages')
 
-    def onlyUberlistingTemplatesWithImages(self):
+    def onlyUberlistingTemplateWithImages(self):
         """ Render template listing only if they have corresponding images
         """
         return self.context.getProperty('onlyUberlistingTemplateWithImages')
@@ -84,18 +85,32 @@ class UberlistingView(BrowserView):
     def enable(self):
         """ Enable uberlisting view by providing IUberlistingView interface
         """
-        translations = self.context.getTranslations()
-        for trans in translations.values():
-            alsoProvides(trans[0], IUberlistingView)
-            trans[0].reindexObject(idxs='object_provides')
-        self._redirect(_('UberlistingView enabled'))
+        try:
+            translations = self.context.getTranslations()
+            for trans in translations.values():
+                trans[0].setLayout('uberlisting_view')
+                alsoProvides(trans[0], IUberlistingView)
+                trans[0].reindexObject(idxs='object_provides')
+        except AttributeError:
+            self.context.setLayout('uberlisting_view')
+            alsoProvides(self.context, IUberlistingView)
+            self.context.reindexObject(idxs='object_provides')
+
+        _redirect(self, _('UberlistingView enabled'))
 
     def disable(self):
         """ Disable uberlisting view by noLongerProviding IUberlistingView
         interface
         """
-        translations = self.context.getTranslations()
-        for trans in translations.values():
-            noLongerProvides(trans[0], IUberlistingView)
-            trans[0].reindexObject(idxs='object_provides')
-        self._redirect(_('UberlistingView disabled'))
+        try:
+            translations = self.context.getTranslations()
+            for trans in translations.values():
+                trans[0].setLayout('folder_listing')
+                noLongerProvides(trans[0], IUberlistingView)
+                trans[0].reindexObject(idxs='object_provides')
+        except AttributeError:
+            self.context.setLayout('folder_listing')
+            noLongerProvides(self.context, IUberlistingView)
+            self.context.reindexObject(idxs='object_provides')
+
+        _redirect(self, _('UberlistingView disabled'))
