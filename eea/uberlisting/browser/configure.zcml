@@ -11,6 +11,7 @@
     <!-- Interfaces -->
     <interface interface=".app.interfaces.IUberlistingView" />
 
+
     <!-- Browser Pages -->
     <browser:page
             for="*"
@@ -21,7 +22,7 @@
     <browser:page
             for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
             name="configure_uberlisting_view"
-            class=".app.view.UberlistingForm"
+            class=".app.forms.UberlistingFormView"
             permission="eea.uberlisting.configure" />
 
     <browser:page
@@ -38,6 +39,7 @@
             attribute="disable"
             permission="eea.uberlisting.configure" />
 
+
     <!-- Browser resources -->
     <browser:resourceDirectory
             name="eea.uberlisting.css"
@@ -46,5 +48,14 @@
     <browser:resourceDirectory
             name="eea.uberlisting.js"
             directory="./js" />
+
+
+    <!-- Adapters and utilities -->
+    <adapter
+            factory=".app.adapter.UberlistingAdapter"
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+            provides=".app.interfaces.IUberlistingForm" />
+
+    <utility component=".app.vocabularies.available_context_layouts" />
 
 </configure>
