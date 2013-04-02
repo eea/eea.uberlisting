@@ -103,7 +103,9 @@ recipe to manage your project, you can do this:
 * Update your buildout.cfg file:
 
   * Add ``eea.uberlisting`` to the list of eggs to install
-  * Tell the `plone.recipe.zope2instance`_ recipe to install a ZCML slug
+
+  * You can skip the ZCML slug since this package is using the z3c.autoinclude
+    include directive
 
   ::
 
@@ -113,16 +115,9 @@ recipe to manage your project, you can do this:
       ...
       eea.uberlisting
 
-    zcml =
-      ...
-      eea.uberlisting
-
 * Re-run buildout, e.g. with::
 
   $ ./bin/buildout
-
-You can skip the ZCML slug if you are going to explicitly include the package
-from another package's configure.zcml file.
 
 
 Dependencies

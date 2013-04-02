@@ -9,6 +9,9 @@ Plone
 - Provide ability to specify which macro to use per template which hooks up
   with javascript when ajax loading
 
+- Update uninstall profile to remove actions and other new features added in
+  1.1
+
 Javascript
 ----------
 
