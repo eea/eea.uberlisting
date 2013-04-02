@@ -9,6 +9,7 @@
     <five:registerPackage package="." initialize=".initialize" />
 
     <include package=".browser" />
+    <include package=".upgrades" />
     <include package="plone.app.z3cform" />
 
     <include file="permissions.zcml" />
