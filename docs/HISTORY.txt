@@ -1,8 +1,10 @@
 Changelog
 =========
 
-1.1-dev - (unreleased)
+2.0-dev - (unreleased)
 ----------------------
+* Feature: register package for Folder, Collection, Topic and Dexterity Container
+  [ichim-david]
 * Change: now pass content-core instead of listing macro for the default macro
   which loads on first page load. This returns consistent result with the 
   ajax_load

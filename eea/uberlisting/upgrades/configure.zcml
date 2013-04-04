@@ -4,7 +4,7 @@
 
   <genericsetup:upgradeSteps
     source="*"
-    destination="1.1"
+    destination="2.0"
     profile="eea.uberlisting:default">
 
     <genericsetup:upgradeDepends
