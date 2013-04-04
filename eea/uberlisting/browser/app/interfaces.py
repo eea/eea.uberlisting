@@ -13,6 +13,11 @@ class IUberlistingView(Interface):
     """
 
 
+class IPossibleUberlistingView(Interface):
+    """ Marker interface to indicate that UberlistingView can be enabled
+    """
+
+
 class IUberlistingForm(Interface):
     """ UberlistingForm Schema information
     """
