@@ -22,6 +22,7 @@ jQuery(document).ready(function($) {
     var $content = $("#content");
     var $uber_view_content = $('#uber-view-content');
     var events = window.Uberlisting.Events;
+    var base_href = $('base').attr('href');
     var $events = $(events);
     var success_event = events.Success;
     var listing_event = events.Listing;
@@ -96,7 +97,7 @@ jQuery(document).ready(function($) {
         var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
         $uber_view_content.html('<img src="ajax-loader.gif" />');
         var url = $.param.querystring(uberTemplate, $.param.querystring());
-        url = url + '?ajax_load=1';
+        url = base_href + '/' + url + '?ajax_load=1';
         $.get(url, function(data) {
             var $data = $(data).find('#content-core');
             $uber_view_content.html($data.html());
