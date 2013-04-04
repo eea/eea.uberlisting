@@ -8,11 +8,11 @@ window.Uberlisting.Events = {};
 // success event which is triggered after the ajax load of the selected template
 // useful if the page requires some extra js code to be called
 // see our bind example below
-window.Uberlisting.Events.Success = 'Success';
+window.Uberlisting.Events.Success = jQuery.Event('Success');
 
 // Listing event which is called on page load for default template
 // useful if you want to modify the listing on page load
-window.Uberlisting.Events.Listing = 'Listing';
+window.Uberlisting.Events.Listing = jQuery.Event('Listing');
 
 jQuery(document).ready(function($) {
     "use strict";
@@ -23,12 +23,12 @@ jQuery(document).ready(function($) {
     var $uber_view_content = $('#uber-view-content');
     var events = window.Uberlisting.Events;
     var base_href = $('base').attr('href');
-    var $events = $(events);
     var success_event = events.Success;
     var listing_event = events.Listing;
+    var $window = $(window);
     // bind our success handler only if we have EEA object
     if (window.EEA) {
-        $events.bind(success_event, function(evt) {
+        $window.bind(success_event, function(evt) {
             var uberTemplate = $.bbq.getState('uberTemplate');
             if (uberTemplate === 'folder_tabs_view') {
                 // run logic for tabs from eea-tabs.js
@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-    $events.bind(listing_event, function(evt) {
+    $window.bind(listing_event, function(evt) {
         $content.find('.listingBar a').each(function(i) {
             var batchQueryString = $.param.querystring(this.href);
             var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
@@ -101,7 +101,7 @@ jQuery(document).ready(function($) {
         $.get(url, function(data) {
             var $data = $(data).find('#content-core');
             $uber_view_content.html($data.html());
-            $events.trigger(success_event);
+            $window.trigger(success_event);
         }, 'html');
     };
 
@@ -119,13 +119,13 @@ jQuery(document).ready(function($) {
             var uber_view = $("#uber-view-content");
             if (uber_view.length) {
                 markSelectedButton();
-                $events.trigger(success_event);
+                $window.trigger(success_event);
             }
         });
     }
 
     if ($uber_view_switch.length) {
-        $(window).bind('hashchange', function(e) {
+        $window.bind('hashchange', function(e) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
             markSelectedButton();
@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
         });
         loadCookieSetttings();
         markSelectedButton();
-        $(events).trigger(listing_event);
+        $window.trigger(listing_event);
     }
 
 });
