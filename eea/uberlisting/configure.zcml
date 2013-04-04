@@ -25,17 +25,17 @@
                 interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
     </class>
 
-    <class class="Products.ATContentTypes.interfaces.topic.IATTopic"
+    <class class="Products.ATContentTypes.content.topic.ATTopic"
            zcml:condition="installed Products.ATContentTypes">
         <implements
                 interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
     </class>
 
-    <class class="plone.dexterity.interfaces.IDexterityContainer"
-           zcml:condition="installed plone.app.dexterity">
+  <class class="plone.dexterity.content.Container"
+    zcml:condition="installed plone.app.dexterity">
         <implements
                 interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
-    </class>
+  </class>
 
     <five:registerPackage package="." initialize=".initialize" />
 
