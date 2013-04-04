@@ -31,11 +31,11 @@
                 interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
     </class>
 
-  <class class="plone.dexterity.content.Container"
-    zcml:condition="installed plone.app.dexterity">
-        <implements
-                interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
-  </class>
+    <class class="plone.dexterity.content.Container"
+        zcml:condition="installed plone.app.dexterity">
+            <implements
+                    interface="eea.uberlisting.browser.app.interfaces.IPossibleUberlistingView"/>
+    </class>
 
     <five:registerPackage package="." initialize=".initialize" />
 
