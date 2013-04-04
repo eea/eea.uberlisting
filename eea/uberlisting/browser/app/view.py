@@ -85,6 +85,8 @@ class UberlistingView(BrowserView):
     def enable(self):
         """ Enable uberlisting view by providing IUberlistingView interface
         """
+        # enable this listing also for the translation of the context if
+        # LinguaPlone is enabled and this context is translated
         try:
             translations = self.context.getTranslations()
             for trans in translations.values():
