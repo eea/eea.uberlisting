@@ -76,7 +76,7 @@ class UberlistingView(BrowserView):
         """
         template = self.getTemplate()
         if template:
-            macro = template.macros.get('listing')
+            macro = template.macros.get('content-core')
             if macro:
                 return macro
         error_view = getattr(self.context, 'macro_error_view')

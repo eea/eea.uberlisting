@@ -3,6 +3,10 @@ Changelog
 
 1.1-dev - (unreleased)
 ----------------------
+* Change: now pass content-core instead of listing macro for the default macro
+  which loads on first page load. This returns consistent result with the 
+  ajax_load
+  [ichim-david]
 * Change: updated eea.pot file with newest translation terms
   [ichim-david]
 * Feature: added a z3c.form BrowserView to enable easier customization of

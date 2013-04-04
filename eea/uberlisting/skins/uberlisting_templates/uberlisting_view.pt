@@ -50,7 +50,10 @@
 
                 </ul>
                 <div id="uber-view-content">
-                    <metal:block metal:use-macro="uberView/getListingMacro" />
+                    <metal:block metal:use-macro="uberView/getListingMacro">
+                        <metal:title  fill-slot="content-title" />
+                        <metal:description fill-slot="content-description" />
+                     </metal:block>
                 </div>
             </metal:listing>
 
