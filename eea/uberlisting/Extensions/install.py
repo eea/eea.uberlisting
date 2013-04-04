@@ -17,7 +17,8 @@ def uninstall(portal, reinstall=False):
             'eea.uberlisting.browser.app.interfaces.IUberlistingView')
         for uberview in uberviews:
             obj = uberview.getObject()
-            obj.setLayout('folder_listing')
+            # set first available layout as layout after uninstall
+            obj.setLayout(obj.getAvailableLayouts()[0][0])
             noLongerProvides(obj, IUberlistingView)
             obj.reindexObject(idxs='object_provides')
         return "Ran all uninstall steps."

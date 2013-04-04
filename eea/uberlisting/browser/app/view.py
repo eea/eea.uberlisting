@@ -40,7 +40,8 @@ class UberlistingView(BrowserView):
             return self.request[uberTemplate]
         elif self.context.hasProperty('defaultUberlistingTemplate'):
             return self.context.getProperty('defaultUberlistingTemplate')
-        return 'folder_listing'
+        # return first layout registered for the context
+        return self.context.getAvailableLayouts()[0][0]
 
     def getTemplate(self):
         """ View
