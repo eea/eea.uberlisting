@@ -1,25 +1,61 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:five="http://namespaces.zope.org/five"
-    i18n_domain="eea">
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:plone="http://namespaces.plone.org/plone"
+        xmlns:zcml="http://namespaces.plone.org/zcml"
+        xmlns:five="http://namespaces.zope.org/five"
+        i18n_domain="eea">
+
+    <include package="eea.uberlisting" file="permissions.zcml" />
+
+    <!-- Interfaces -->
+    <interface interface=".app.interfaces.IUberlistingView" />
+
 
     <!-- Browser Pages -->
     <browser:page
-        for="*"
-        name="uberlisting_view_logic"
-        class=".app.view.UberlistingView"
-        permission="zope.Public"
-        />
+            for="*"
+            name="uberlisting_view_logic"
+            class=".app.view.UberlistingView"
+            permission="zope.Public" />
+
+    <browser:page
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+            name="configure_uberlisting_view"
+            class=".app.forms.UberlistingFormView"
+            permission="eea.uberlisting.configure" />
+
+    <browser:page
+            for="*"
+            name="enableUberlistingView"
+            class=".app.view.UberlistingView"
+            attribute="enable"
+            permission="eea.uberlisting.configure" />
+
+    <browser:page
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+            name="disableUberlistingView"
+            class=".app.view.UberlistingView"
+            attribute="disable"
+            permission="eea.uberlisting.configure" />
+
 
     <!-- Browser resources -->
     <browser:resourceDirectory
-        name="eea.uberlisting.css"
-        directory="./css" />
+            name="eea.uberlisting.css"
+            directory="./css" />
 
     <browser:resourceDirectory
-        name="eea.uberlisting.js"
-        directory="./js" />
+            name="eea.uberlisting.js"
+            directory="./js" />
+
+
+    <!-- Adapters and utilities -->
+    <adapter
+            factory=".app.adapter.UberlistingAdapter"
+            for="eea.uberlisting.browser.app.interfaces.IUberlistingView"
+            provides=".app.interfaces.IUberlistingForm" />
+
+    <utility component=".app.vocabularies.available_context_layouts" />
 
 </configure>

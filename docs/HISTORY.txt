@@ -1,12 +1,41 @@
 Changelog
 =========
 
-1.1-dev - (unreleased)
+2.0-dev - (unreleased)
 ----------------------
+* Feature: added migration script which adds IUberlistingView to every Folder
+  that had uberlisting_view as enabled layout in order to enable Uberlisting
+  View z3c.form editing form
+  [ichim-david]
+* Feature: Added default images for Topic, Collection and Folder
+  [ichim-david]
+* Feature: Register package for Folder, Collection, Topic and 
+  Dexterity Container
+  [ichim-david]
+* Change: Load template also with ajax that loads on first page load. 
+  This returns consistent result with loading of template from the uberlisting
+  switch buttons
+  [ichim-david]
+* Change: Updated eea.pot file with newest translation terms
+  [ichim-david]
+* Feature: Added a z3c.form BrowserView to enable easier customization of
+  these properties and available options
+  [ichim-david]
+* Feature: Added object action that enables UberlistingView instead of relying 
+  on just setting a template as default view.
+  [ichim-david]
+* Feature: Added dedicated permissions for package usage, by default the 
+  following Roles inherit this permission: Editor, Manager and
+  Site Administrator
+  [ichim-david]
+* Feature: Added onlyUberlistingTemplateWithImages property in order to display
+  only templates that have corresponding images
+  [ichim-david]
 
-1.1-dev - (2012-11-22)
-----------------------
-* Feature: added information for contributors
+1.0 - (2012-11-22)
+------------------
+* Feature: Added information for contributors
   [ciobabog refs #13892]
 - Initial release
+  [ichim-david]
 
