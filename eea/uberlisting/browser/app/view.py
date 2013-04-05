@@ -72,18 +72,6 @@ class UberlistingView(BrowserView):
         """
         return self.context.getProperty('onlyUberlistingTemplateWithImages')
 
-    def getListingMacro(self):
-        """ Macro
-        """
-        template = self.getTemplate()
-        if template:
-            macro = template.macros.get('listing') or template.macros.get(
-                                                'content-core')
-            if macro:
-                return macro
-        error_view = getattr(self.context, 'macro_error_view')
-        return error_view.macros.get('listing')
-
     def enable(self):
         """ Enable uberlisting view by providing IUberlistingView interface
         """
