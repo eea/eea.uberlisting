@@ -10,16 +10,41 @@ Introduction
 ============
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-| By default it adds a single **uberlisting_view** view method to the **Folder**
-  Content Type, which when set as the default View gives the web visitor the
+| By default this package can enable a view on the **Folder**, **Topic** and 
+  **Collection** Content Type, which when enabled it gives the web visitor the
   ability to switch between the views that are available for that Content Type,
   instead of having a fixed one, all from the same template.
+  
+This is accomplished by loading the available template through ajax passing 
+in the the ajax_load parameter set by plonetheme.sunburst to 
+load the page without the columns and resources and then inject the result 
+in the uberlisting view.
+
 |
 
 .. contents::
 
+Upgrade
+=======
+ 
+ * As of 2.0 all of the python tricks that are described in the section of tips
+   and tricks can be added through the Uberlisting View form 
+
 Tips and tricks
 ===============
+
+Calling javascript on listing load
+----------------------------------
+
+ * After we load these results we trigger an event which you can hook on in order
+   to modify the listing
+    
+    ::
+
+     ex: $(window).bind('Uberlisting.Success', function(ev) {
+             // Run galleryView on the listing results
+             $('#content').galleryView();
+          });
 
 Choose the right templates to use for this package
 --------------------------------------------------
@@ -51,8 +76,10 @@ Set default template when visiting template for first time
   * In ZMI > context > manage_properties: Add a '*string*' property named
     **defaultUberlistingTemplate** and add the template id that should be used
     as the default template.
-
-    ex: folder_summary_view
+    
+    ::
+    
+     ex: folder_summary_view
 
     By default if this property isn't set and no cookie is present with the name
     of the default template then **folder_listing** will be used as default.
@@ -62,8 +89,10 @@ Get listing of templates as images instead of template title name
 
   * This packages looks for a png image to use for the views listing in the
     format of template id + '.png'.
-
-    ex: folder_summary_view.png
+    
+    ::
+    
+     ex: folder_summary_view.png
 
     We have provides some images for the common Plone templates as well as
     some for our own templates, if you need a different style for the icons you can
