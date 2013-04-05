@@ -142,6 +142,9 @@ jQuery(document).ready(function($) {
         markSelectedButton();
         loadContent();
         $window.trigger(listing_event);
+        if ($("[id='plone-contentmenu-actions-uberlderlisting.disable']").length) {
+            $("#plone-contentmenu-display").hide();
+        }
     }
 
 });
