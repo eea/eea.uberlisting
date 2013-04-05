@@ -1,4 +1,4 @@
-/* readCookie and createCookie from Plone cookie_functions.js */ 
+/* readCookie Plone cookie_functions.js */ 
 /*global window, jQuery */ 
 /* Events
 */
@@ -99,8 +99,12 @@ jQuery(document).ready(function($) {
         var url = $.param.querystring(uberTemplate, $.param.querystring());
         url = base_href + '/' + url + '?ajax_load=1';
         $.get(url, function(data) {
-            var $data = $(data).find('#content-core');
-            $uber_view_content.html($data.html());
+            var $data = $(data);
+                $content = $data.find('#content-core');
+            if (!$content.length) {
+                $content = $content.find('div').eq(0);
+            }
+            $uber_view_content.html($content.html());
             $window.trigger(success_event);
         }, 'html');
     };
@@ -110,7 +114,8 @@ jQuery(document).ready(function($) {
         $.bbq.pushState({
             'uberTemplate': uberTemplate
         });
-        window.createCookie('uberTemplate', uberTemplate);
+        // removed createCookie from CMFPlone since the path is always /
+        document.cookie = 'uberTemplate' + "=" + uberTemplate + "; path=" + window.location.pathname;
         evt.preventDefault();
     });
 
@@ -135,6 +140,7 @@ jQuery(document).ready(function($) {
         });
         loadCookieSetttings();
         markSelectedButton();
+        loadContent();
         $window.trigger(listing_event);
     }
 
