@@ -8,10 +8,14 @@
     profile="eea.uberlisting:default">
 
     <genericsetup:upgradeDepends
-      title="Import profile steps with changes: actions metadata rolemap"
-      import_steps="actions metadata rolemap"
+      title="Import all steps from eea.uberlisting profile"
+      import_profile="eea.uberlisting:default"
       />
 
+    <genericsetup:upgradeStep
+      title="Set IUberlistingView for every object that has uberlisting_view"
+      handler="eea.uberlisting.upgrades.evolve20.set_uberlisting_view"
+      />
   </genericsetup:upgradeSteps>
 
 </configure>
