@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0-dev - (unreleased)
-----------------------
+2.0 - (2013-04-06)
+------------------
 * Feature: added migration script which adds IUberlistingView to every Folder
   that had uberlisting_view as enabled layout in order to enable Uberlisting
   View z3c.form editing form
