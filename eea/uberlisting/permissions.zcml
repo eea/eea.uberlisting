@@ -1,0 +1,10 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        i18n_domain="eea">
+
+    <permission
+            id="eea.uberlisting.configure"
+            title="eea.uberlisting: Configure uberlisting"
+            />
+
+</configure>

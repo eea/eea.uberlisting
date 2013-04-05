@@ -7,30 +7,49 @@
     <metal:content-core fill-slot="content-core">
         <metal:content define-macro="content-core">
 
-            <metal:listing define-macro="listing" tal:define="uberView nocall:context/@@uberlisting_view_logic;
+            <metal:listing define-macro="listing" tal:define="
+                uberView nocall:context/@@uberlisting_view_logic;
                 templates uberView/getAvailableTemplateNames;
                 selectedTemplate uberView/getTemplateName;
                 portal_url portal_url|context/@@plone_portal_state/portal_url;
-                noImages uberView/noUberlistingTemplateImages; ">
+                noImages uberView/noUberlistingTemplateImages;
+                onlyImages uberView/onlyUberlistingTemplateWithImages;">
                 <div id="selected-template" tal:content="selectedTemplate" />
                 <ul id="uber-view-switch"  tal:define="templateName uberView/getTemplateName">
-                    <tal:template_images repeat="template templates"  tal:condition="python:templates and not noImages"> 
-                        <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
-                             tal:condition="python:exists('context/%s' % img)">
-                             <a tal:attributes="href string:${templateId}; data-templateId templateId">
+
+                    <tal:templates_with_images repeat="template templates"
+                                           tal:condition="python:templates and onlyImages">
+                        <li tal:define="templateId python:template[0]; img python:templateId + '.png'"
+                            tal:condition="python:exists('context/%s' % img)">
+                            <a tal:attributes="href string:${templateId}; data-templateId templateId">
                                 <img i18n:attributes="title" tal:attributes="src python: portal_url + '/' + templateId + '.png'; title python:template[1]" />
                             </a>
                         </li>
-                    </tal:template_images>
-                    <tal:template_no_images repeat="template templates"  tal:condition="templates"> 
-                        <li tal:define="templateId python:template[0]; img python:templateId + '.png'" 
-                             tal:condition="python:noImages or not exists('context/%s' % img)">
-                            <a i18n:attributes="title" tal:attributes="href string:${templateId}; data-templateId templateId; title python:template[1]" tal:content="python:template[1]" class='no-img' />
-                        </li>
-                    </tal:template_no_images>
+                    </tal:templates_with_images>
+
+                    <tal:mixed_templates
+                            tal:condition="python:templates and not onlyImages">
+
+                        <tal:template_images repeat="template templates"  tal:condition="python:templates and not noImages">
+                            <li tal:define="templateId python:template[0]; img python:templateId + '.png'"
+                                 tal:condition="python:exists('context/%s' % img)">
+                                 <a tal:attributes="href string:${templateId}; data-templateId templateId">
+                                    <img i18n:attributes="title" tal:attributes="src python: portal_url + '/' + templateId + '.png'; title python:template[1]" />
+                                </a>
+                            </li>
+                        </tal:template_images>
+
+                        <tal:template_no_images repeat="template templates"  tal:condition="templates">
+                            <li tal:define="templateId python:template[0]; img python:templateId + '.png'"
+                                 tal:condition="python:noImages or not exists('context/%s' % img)">
+                                <a i18n:attributes="title" tal:attributes="href string:${templateId}; data-templateId templateId; title python:template[1]" tal:content="python:template[1]" class='no-img' />
+                            </li>
+                        </tal:template_no_images>
+
+                    </tal:mixed_templates>
+
                 </ul>
                 <div id="uber-view-content">
-                    <metal:block metal:use-macro="uberView/getListingMacro" />
                 </div>
             </metal:listing>
 
