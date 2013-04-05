@@ -57,7 +57,6 @@ class UberlistingView(BrowserView):
         # the templates that shouldn't be added to the uberlisting_view
         banned_views = list(self.context.getProperty(
                                             'bannedUberlistingTemplates', ''))
-        banned_views.append('uberlisting_view')
         views = [view for view in views if view[0] not in banned_views]
         return views 
 
@@ -97,11 +96,12 @@ class UberlistingView(BrowserView):
         try:
             translations = self.context.getTranslations()
             for trans in translations.values():
-                trans[0].setLayout('folder_listing')
+                # set as the layout the first available template
+                trans[0].setLayout(trans[0].getAvailableLayouts()[0][0])
                 noLongerProvides(trans[0], IUberlistingView)
                 trans[0].reindexObject(idxs='object_provides')
         except AttributeError:
-            self.context.setLayout('folder_listing')
+            self.context.setLayout(self.context.getAvailableLayouts()[0][0])
             noLongerProvides(self.context, IUberlistingView)
             self.context.reindexObject(idxs='object_provides')
 

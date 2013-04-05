@@ -13,8 +13,6 @@ def available_context_layouts(context):
     terms = []
     layouts = context.getAvailableLayouts()
     for layout in layouts:
-        if layout[0] == 'uberlisting_view':
-            continue
         terms.append(SimpleVocabulary.createTerm(layout[0], str(layout[0]),
                                                  layout[1]))
 

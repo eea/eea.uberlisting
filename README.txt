@@ -27,14 +27,17 @@ in the uberlisting view.
 Upgrade
 =======
  
- * As of 2.0 all of the python tricks that are described in the section of tips
+ * As of 2.0 all of the Plone tricks that are described in the section of tips
    and tricks can be added through the Uberlisting View form 
 
 Tips and tricks
 ===============
 
+Javascript tips
+---------------
+
 Calling javascript on listing load
-----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  * After we load these results we trigger an event which you can hook on in order
    to modify the listing
@@ -46,8 +49,24 @@ Calling javascript on listing load
              $('#content').galleryView();
           });
 
+Modify the returning listing
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+ * By default when doing the ajax load the load is checking if content-core is 
+   available and if so it's content is added in the div with the id uber-view-content.
+   
+   If your template doesn't have the content inside the content-core div then it will
+   return the results of the first div it find on the content that was returned from 
+   the ajax load. 
+   
+   Therefore if you want to influence the result or your template doesn't
+   have the content-core id than just wrap the desired content inside of div tag.
+
+Plone tips
+----------
+
 Choose the right templates to use for this package
---------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * The python logic that retrieves the contents of the template listings
     expects the template to implement the **listing** macro.
@@ -57,7 +76,7 @@ Choose the right templates to use for this package
     to list results should work with the Uberlisting View.
 
 Disable templates from showing up in the Uberlisting View
----------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * In ZMI > context > manage_properties: Add a '*lines*' property named
     **bannedUberlistingTemplates**.
@@ -71,7 +90,7 @@ Disable templates from showing up in the Uberlisting View
          folder_contents
 
 Set default template when visiting template for first time
-----------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * In ZMI > context > manage_properties: Add a '*string*' property named
     **defaultUberlistingTemplate** and add the template id that should be used
@@ -85,7 +104,7 @@ Set default template when visiting template for first time
     of the default template then **folder_listing** will be used as default.
 
 Get listing of templates as images instead of template title name
------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * This packages looks for a png image to use for the views listing in the
     format of template id + '.png'.
@@ -105,8 +124,11 @@ Get listing of templates as images instead of template title name
     prefer to have only template name then In ZMI > context > manage_properties:
     Add a checked **boolean** property named '**noUberlistingTemplateImages**'
 
+EEA products integration tips
+-----------------------------
+
 Get enhanced thumbnails when used with eea.depiction
-----------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * If you have eea.depiction installed you can configure a fallback image for
     the contenttypes that do not have an image field by default, allowing the
@@ -114,7 +136,7 @@ Get enhanced thumbnails when used with eea.depiction
     with images like album view.
 
 Get enhanced search capabilities when used with eea.facetednavigation
----------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   * If you have eea.facetednavigation installed you can use uberlisting_view as
     a view for the Faceted Navigation, allowing you to combine the search capabilities
