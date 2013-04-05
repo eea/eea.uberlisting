@@ -42,7 +42,8 @@ setup(name=NAME,
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'eea.jquery'
+          'eea.jquery',
+          'plone.app.z3cform'
       ],
       entry_points="""
       # -*- Entry points: -*-

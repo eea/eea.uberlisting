@@ -1,25 +1,34 @@
-/* readCookie and createCookie from Plone cookie_functions.js */ 
+/* readCookie Plone cookie_functions.js */ 
 /*global window, jQuery */ 
 /* Events
 */
 window.Uberlisting = {};
 window.Uberlisting.Events = {};
-window.Uberlisting.Events.Success = 'Success';
-window.Uberlisting.Events.Listing = 'Listing';
+
+// success event which is triggered after the ajax load of the selected template
+// useful if the page requires some extra js code to be called
+// see our bind example below
+window.Uberlisting.Events.Success = jQuery.Event('Success');
+
+// Listing event which is called on page load for default template
+// useful if you want to modify the listing on page load
+window.Uberlisting.Events.Listing = jQuery.Event('Listing');
 
 jQuery(document).ready(function($) {
     "use strict";
     var $uber_view_switch = $('#uber-view-switch');
     var faceted = $("#faceted-form").length;
     var selected_template = $("#selected-template").text();
-    var ie6or7 = $.browser.msie && (parseInt($.browser.version, 10) <= 7);
+    var $content = $("#content");
+    var $uber_view_content = $('#uber-view-content');
     var events = window.Uberlisting.Events;
-    var $events = $(events);
+    var base_href = $('base').attr('href');
     var success_event = events.Success;
     var listing_event = events.Listing;
+    var $window = $(window);
     // bind our success handler only if we have EEA object
     if (window.EEA) {
-        $events.bind(success_event, function(evt) {
+        $window.bind(success_event, function(evt) {
             var uberTemplate = $.bbq.getState('uberTemplate');
             if (uberTemplate === 'folder_tabs_view') {
                 // run logic for tabs from eea-tabs.js
@@ -37,17 +46,14 @@ jQuery(document).ready(function($) {
         });
     }
 
-    $events.bind(listing_event, function(evt) {
-        var $uber_view_content = $('#uber-view-content');
-        
-        $('.listingBar a').each(function(i) {
+    $window.bind(listing_event, function(evt) {
+        $content.find('.listingBar a').each(function(i) {
             var batchQueryString = $.param.querystring(this.href);
             var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
-            var newUrl = $.param.querystring(uberTemplate, batchQueryString);
-            this.href = newUrl;
+            this.href = $.param.querystring(uberTemplate, batchQueryString);
         }); 
 
-        $('#content').delegate('.listingBar ', 'click', function(evt){
+        $content.delegate('.listingBar ', 'click', function(evt){
             var $target = $(evt.target);
             var target_href = $target.attr('href');
             $uber_view_content.html('<img src="ajax-loader.gif" />');
@@ -91,28 +97,25 @@ jQuery(document).ready(function($) {
         var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
         $uber_view_content.html('<img src="ajax-loader.gif" />');
         var url = $.param.querystring(uberTemplate, $.param.querystring());
-        url = url + '?ajax_load=1';
+        url = base_href + '/' + url + '?ajax_load=1';
         $.get(url, function(data) {
-            var $data = $(data).find('#content-core');
-            $uber_view_content.html($data.html());
-            $events.trigger(success_event);
+            var $data = $(data);
+                $content = $data.find('#content-core');
+            if (!$content.length) {
+                $content = $content.find('div').eq(0);
+            }
+            $uber_view_content.html($content.html());
+            $window.trigger(success_event);
         }, 'html');
     };
 
-    $("#content").delegate('#uber-view-switch a', 'click', function(evt) {
+    $content.delegate('#uber-view-switch a', 'click', function(evt) {
         var uberTemplate = $(this).data().templateid;
         $.bbq.pushState({
             'uberTemplate': uberTemplate
         });
-        if (faceted) {
-            // #3370 - IE7 does not pick up on hash changes
-            if (ie6or7) {
-                window.Faceted.Query = window.Faceted.URLHandler.hash2query(window.location.hash);
-                $(window.Faceted.Events).trigger(window.Faceted.Events.QUERY_CHANGED);
-                window.Faceted.Form.do_form_query();
-            }
-        }
-        window.createCookie('uberTemplate', uberTemplate);
+        // removed createCookie from CMFPlone since the path is always /
+        document.cookie = 'uberTemplate' + "=" + uberTemplate + "; path=" + window.location.pathname;
         evt.preventDefault();
     });
 
@@ -121,13 +124,13 @@ jQuery(document).ready(function($) {
             var uber_view = $("#uber-view-content");
             if (uber_view.length) {
                 markSelectedButton();
-                $events.trigger(success_event);
+                $window.trigger(success_event);
             }
         });
     }
 
     if ($uber_view_switch.length) {
-        $(window).bind('hashchange', function(e) {
+        $window.bind('hashchange', function(e) {
             // If faceted navigation is enabled, we don't have to make our own
             // AJAX request.
             markSelectedButton();
@@ -137,9 +140,11 @@ jQuery(document).ready(function($) {
         });
         loadCookieSetttings();
         markSelectedButton();
-       $(events).trigger(listing_event);
-       //$(events).trigger(success_event);
-
+        loadContent();
+        $window.trigger(listing_event);
+        if ($("[id='plone-contentmenu-actions-uberlderlisting.disable']").length) {
+            $("#plone-contentmenu-display").hide();
+        }
     }
 
 });

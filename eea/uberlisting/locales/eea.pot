@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-09-12 18:21+0000\n"
+"POT-Creation-Date: 2013-04-02 09:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,67 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: eea\n"
 
+#: ../../uberlisting/browser/app/interfaces.py:60
+msgid "'List templates as text' and 'List only templates with icons' are mutually exclusive"
+msgstr ""
+
+#: ../../uberlisting/browser/app/forms.py:16
+msgid "Cancel"
+msgstr ""
+
+#: ../../uberlisting/browser/app/forms.py:20
+msgid "Canceled uberlisting configuration changes"
+msgstr ""
+
 #: ../../uberlisting/skins/uberlisting_templates/macro_error_view.pt:2
 msgid "Couldn't find 'listing' macro in the selected template"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:21
+msgid "Default template"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:43
+msgid "Exclude templates"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:38
+msgid "If checked only templates with corresponding icons will be displayed"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:31
+msgid "If checked templates will be listed with their full names instead of any icons listing"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:22
+msgid "If no cookie is present with the name of the default template then this value will be used as default"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:37
+msgid "List only templates with icons"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:30
+msgid "List templates as text"
+msgstr ""
+
+#: ../../uberlisting/browser/app/forms.py:22
+msgid "Save"
+msgstr ""
+
+#: ../../uberlisting/browser/app/forms.py:31
+msgid "Saved uberlisting configuration changes"
+msgstr ""
+
+#: ../../uberlisting/browser/app/interfaces.py:44
+msgid "These templates will not be listed. Useful if a template displays an error or it returns no result"
+msgstr ""
+
+#: ../../uberlisting/browser/app/view.py:116
+msgid "UberlistingView disabled"
+msgstr ""
+
+#: ../../uberlisting/browser/app/view.py:99
+msgid "UberlistingView enabled"
 msgstr ""
 
