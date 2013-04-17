@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.1-dev - (unreleased)
-----------------------
+2.1 - (2013-04-17)
+------------------
 * Change: removed documentation entry regarding use of macros since as of 2.0
   we load the template through ajax
   [ichim-david]
