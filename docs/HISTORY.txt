@@ -3,6 +3,8 @@ Changelog
 
 2.1-dev - (unreleased)
 ----------------------
+* Bug fix: fixed HISTORY.txt RST markup
+  [ghicaale refs #14321]
 
 2.0 - (2013-04-06)
 ------------------
@@ -12,10 +14,10 @@ Changelog
   [ichim-david]
 * Feature: Added default images for Topic, Collection and Folder
   [ichim-david]
-* Feature: Register package for Folder, Collection, Topic and 
+* Feature: Register package for Folder, Collection, Topic and
   Dexterity Container
   [ichim-david]
-* Change: Load template also with ajax that loads on first page load. 
+* Change: Load template also with ajax that loads on first page load.
   This returns consistent result with loading of template from the uberlisting
   switch buttons
   [ichim-david]
@@ -24,10 +26,10 @@ Changelog
 * Feature: Added a z3c.form BrowserView to enable easier customization of
   these properties and available options
   [ichim-david]
-* Feature: Added object action that enables UberlistingView instead of relying 
+* Feature: Added object action that enables UberlistingView instead of relying
   on just setting a template as default view.
   [ichim-david]
-* Feature: Added dedicated permissions for package usage, by default the 
+* Feature: Added dedicated permissions for package usage, by default the
   following Roles inherit this permission: Editor, Manager and
   Site Administrator
   [ichim-david]
@@ -39,6 +41,6 @@ Changelog
 ------------------
 * Feature: Added information for contributors
   [ciobabog refs #13892]
-- Initial release
+* Initial release
   [ichim-david]
 
