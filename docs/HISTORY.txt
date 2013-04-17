@@ -3,6 +3,11 @@ Changelog
 
 2.1-dev - (unreleased)
 ----------------------
+* Change: removed documentation entry regarding use of macros since as of 2.0
+  we load the template through ajax
+  [ichim-david]
+* Add document to globals to avoid jslint error
+  [ichim-david]
 
 2.0 - (2013-04-06)
 ------------------

@@ -65,16 +65,6 @@ Modify the returning listing
 Plone tips
 ----------
 
-Choose the right templates to use for this package
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  * The python logic that retrieves the contents of the template listings
-    expects the template to implement the **listing** macro.
-
-    By default all of the Plone templates implement this macro so all
-    templates that come from Plone and those that implement a listing macro
-    to list results should work with the Uberlisting View.
-
 Disable templates from showing up in the Uberlisting View
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

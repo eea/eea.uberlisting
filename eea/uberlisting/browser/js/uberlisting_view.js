@@ -1,5 +1,5 @@
 /* readCookie Plone cookie_functions.js */ 
-/*global window, jQuery */ 
+/*global window, document, jQuery */ 
 /* Events
 */
 window.Uberlisting = {};
