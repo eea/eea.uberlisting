@@ -3,6 +3,9 @@ Changelog
 
 2.2-dev - (unreleased)
 ----------------------
+* Change: updated README.txt to make it more clear on how to enable the 
+  UberlistingView
+  [ichimdav fixes #16632]
 
 2.1 - (2013-04-17)
 ------------------

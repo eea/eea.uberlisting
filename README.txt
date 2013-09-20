@@ -15,20 +15,29 @@ Introduction
   ability to switch between the views that are available for that Content Type,
   instead of having a fixed one, all from the same template.
   
-This is accomplished by loading the available template through ajax passing 
-in the the ajax_load parameter set by plonetheme.sunburst to 
-load the page without the columns and resources and then inject the result 
-in the uberlisting view.
+  
+| This listing is accomplished by loading the available template through ajax 
+  passing in the the ajax_load parameter set by plonetheme.sunburst to 
+  load the page without the columns and resources and then inject the result 
+  in the UberlistingView.
 
-|
+
+How to enable
+=============
+
+This view is enabled through an *action* called **Enable UberlistingView** 
+which is found within the **actions** *dropdown menu* for the content types
+mentioned in the introduction.
+
 
 .. contents::
 
 Upgrade
 =======
  
- * As of 2.0 all of the Plone tricks that are described in the section of tips
-   and tricks can be added through the Uberlisting View form 
+ * As of 2.0 all of the **Plone tips and tricks** that are described in the section 
+   of tips and tricks can be added through the Uberlisting View form  allowing
+   therefore users without permission to the ZMI to make changes to the view
 
 Tips and tricks
 ===============
@@ -64,6 +73,10 @@ Modify the returning listing
 
 Plone tips
 ----------
+ 
+ * As mentioned in the upgrade steps these steps no longer need to be added
+   manually, however by visiting manage_properties you can see these properties
+   added after using the view form.
 
 Disable templates from showing up in the Uberlisting View
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
