@@ -2,14 +2,14 @@
 """
 import logging
 from Products.CMFCore.utils import getToolByName
-from eea.uberlisting.browser.app.interfaces import IUberlistingView 
+from eea.uberlisting.browser.app.interfaces import IUberlistingView
 from zope.interface import alsoProvides
 import transaction
 logg = logging.getLogger("eea.uberlisting.upgrades")
 
 
 def set_uberlisting_view(context):
-    """ Set IUberlistingView interface to objects that have uberlisting_view 
+    """ Set IUberlistingView interface to objects that have uberlisting_view
         set
     """
     ctool = getToolByName(context, 'portal_catalog')

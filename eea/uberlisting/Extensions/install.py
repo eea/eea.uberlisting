@@ -13,7 +13,7 @@ def uninstall(portal, reinstall=False):
             'profile-eea.uberlisting:uninstall')
         # remove also rolemaps from here and any interfaces from this package
         catalog = getToolByName(portal, 'portal_catalog')
-        uberviews = catalog.searchResults(object_provides =
+        uberviews = catalog.searchResults(object_provides=
             'eea.uberlisting.browser.app.interfaces.IUberlistingView')
         for uberview in uberviews:
             obj = uberview.getObject()
