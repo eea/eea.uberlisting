@@ -1,4 +1,4 @@
-""" eea.uberlisting Init 
+""" eea.uberlisting Init
 """
 # -*- extra stuff goes here -*-
 from zope.i18nmessageid.message import MessageFactory
