@@ -1,4 +1,4 @@
 Introduction
 ============
 
-See README.txt from the root of the package
+See README from the root of the package

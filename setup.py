@@ -13,7 +13,7 @@ setup(name=NAME,
       description=(
             "Plone product for ajax display of available templates "
             "for the given content type"),
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
           "Framework :: Plone",
