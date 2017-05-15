@@ -1,7 +1,7 @@
 """ Test doctests module
 """
-import eea.uberlisting
 import unittest
+import eea.uberlisting
 
 #from zope.testing import doctestunit
 #from zope.component import testing
