@@ -1,9 +1,9 @@
 """ Controller
 """
 from Products.Five import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import alsoProvides, noLongerProvides
 from eea.uberlisting.browser.app.interfaces import IUberlistingView
-from Products.statusmessages.interfaces import IStatusMessage
 from eea.uberlisting import EEAMessageFactory as _
 
 

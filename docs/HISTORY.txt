@@ -3,6 +3,8 @@ Changelog
 
 2.7.dev0 - (unreleased)
 -----------------------
+* Change: fixed PyLint warnings and errors
+  [eduard-fironda refs #84949]
 
 2.6 - (2017-04-24)
 ------------------

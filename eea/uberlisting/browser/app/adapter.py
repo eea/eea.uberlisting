@@ -79,4 +79,3 @@ class UberlistingAdapter(object):
                           'boolean')
 
     onlyTemplatesWithIcons = property(oget, oset)
-
