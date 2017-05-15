@@ -20,4 +20,3 @@ def available_context_layouts(context):
 
 
 alsoProvides(available_context_layouts, IContextSourceBinder)
-
