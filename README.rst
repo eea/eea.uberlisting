@@ -1,40 +1,39 @@
 ================
 EEA Uberlisting
 ================
-.. image:: http://ci.eionet.europa.eu/job/eea.uberlisting-www/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.uberlisting-www/lastBuild
-.. image:: http://ci.eionet.europa.eu/job/eea.uberlisting-plone4/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.uberlisting-plone4/lastBuild
+.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.uberlisting/job/master/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea/job/eea.uberlisting/job/master/display/redirect
+
 .. contents::
 
 Introduction
 ============
 `EEA Uberlisting`_  enhances and extends the listing layouts capabilities of Plone.
 
-| By default this package can enable a view on the **Folder**, **Topic** and 
+| By default this package can enable a view on the **Folder**, **Topic** and
   **Collection** Content Type, which when enabled it gives the web visitor the
   ability to switch between the views that are available for that Content Type,
   instead of having a fixed one, all from the same template.
-  
-  
-| This listing is accomplished by loading the available template through ajax 
-  passing in the the ajax_load parameter set by plonetheme.sunburst to 
-  load the page without the columns and resources and then inject the result 
+
+
+| This listing is accomplished by loading the available template through ajax
+  passing in the the ajax_load parameter set by plonetheme.sunburst to
+  load the page without the columns and resources and then inject the result
   in the UberlistingView.
 
 
 How to enable
 =============
 
-This view is enabled through an *action* called **Enable UberlistingView** 
+This view is enabled through an *action* called **Enable UberlistingView**
 which is found within the **actions** *dropdown menu* for the content types
 mentioned in the introduction.
 
 
 Upgrade
 =======
- 
-* As of 2.0 all of the **Plone tips and tricks** that are described in the section 
+
+* As of 2.0 all of the **Plone tips and tricks** that are described in the section
   of tips and tricks can be added through the Uberlisting View form  allowing
   therefore users without permission to the ZMI to make changes to the view
 
@@ -59,20 +58,20 @@ Calling javascript on listing load
 
 Modify the returning listing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 
-* By default when doing the ajax load the load is checking if content-core is 
+
+* By default when doing the ajax load the load is checking if content-core is
   available and if so it's content is added in the div with the id uber-view-content.
-   
+
   If your template doesn't have the content inside the content-core div then it will
-  return the results of the first div it find on the content that was returned from 
-  the ajax load. 
-   
+  return the results of the first div it find on the content that was returned from
+  the ajax load.
+
   Therefore if you want to influence the result or your template doesn't
   have the content-core id than just wrap the desired content inside of div tag.
 
 Plone tips
 ----------
- 
+
 * As mentioned in the upgrade steps these steps no longer need to be added
   manually, however by visiting manage_properties you can see these properties
   added after using the view form.
@@ -97,9 +96,9 @@ Set default template when visiting template for first time
 * In ZMI > context > manage_properties: Add a '*string*' property named
   **defaultUberlistingTemplate** and add the template id that should be used
   as the default template.
-    
+
   ::
-    
+
     ex: folder_summary_view
 
   By default if this property isn't set and no cookie is present with the name
@@ -110,9 +109,9 @@ Get listing of templates as images instead of template title name
 
 * This packages looks for a png image to use for the views listing in the
   format of template id + '.png'.
-    
+
   ::
-    
+
     ex: folder_summary_view.png
 
   We have provides some images for the common Plone templates as well as
