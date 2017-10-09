@@ -3,6 +3,8 @@ Changelog
 
 2.8.dev0 - (unreleased)
 -----------------------
+* Change: Remove Sphinx generated documentation
+  [petchesi-iulian refs #88212]
 
 2.7 - (2017-05-15)
 ------------------
