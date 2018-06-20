@@ -192,8 +192,8 @@ Source code
 ===========
 
 Latest source code (Plone 4 compatible):
-  - http://github.com/eea/eea.uberlisting
-  - http://github.com/collective/eea.uberlisting
+  - https://github.com/eea/eea.uberlisting
+  - https://github.com/collective/eea.uberlisting
 
 
 Copyright and license
@@ -215,11 +215,11 @@ Funding and project management
 
 EEA_ - European Environment Agency (EU)
 
-.. _EEA: http://www.eea.europa.eu/
-.. _`EEA Uberlisting`: http://eea.github.com/docs/eea.uberlisting
-.. _`EEA jQuery`: http://eea.github.com/docs/eea.jquery
-.. _`EEA Depiction`: http://eea.github.com/docs/eea.depiction
-.. _`EEA Faceted Navigation`: http://eea.github.com/docs/eea.facetednavigation
+.. _EEA: https://www.eea.europa.eu/
+.. _`EEA Uberlisting`: https://eea.github.com/docs/eea.uberlisting
+.. _`EEA jQuery`: https://eea.github.com/docs/eea.jquery
+.. _`EEA Depiction`: https://eea.github.com/docs/eea.depiction
+.. _`EEA Faceted Navigation`: https://eea.github.com/docs/eea.facetednavigation
 .. _`jquery.bbq`: https://github.com/cowboy/jquery-bbq
-.. _`plone.recipe.zope2instance`: http://pypi.python.org/pypi/plone.recipe.zope2instance
-.. _`zc.buildout`: http://pypi.python.org/pypi/zc.buildout
+.. _`plone.recipe.zope2instance`: https://pypi.python.org/pypi/plone.recipe.zope2instance
+.. _`zc.buildout`: https://pypi.python.org/pypi/zc.buildout
