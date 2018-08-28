@@ -1,8 +1,15 @@
 Changelog
 =========
 
-2.9.dev0 - (unreleased)
+3.0 - (2018-08-27)
 -----------------------
+* Change: Get base-url from body data `base-url`
+  [avoinea refs #97843]
+* Change: updated URLs pointing to eea.europa.eu with https://
+  [alecghica refs #95849]
+
+2.9 - (2017-12-12)
+------------------
 * Change: Replace eeacms/zptlint with eeacms/plone-test:4 zptlint
   [avoinea refs #90415]
 

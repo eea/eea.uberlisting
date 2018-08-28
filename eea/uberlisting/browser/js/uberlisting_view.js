@@ -1,5 +1,5 @@
-/* readCookie Plone cookie_functions.js */ 
-/*global window, document, jQuery */ 
+/* readCookie Plone cookie_functions.js */
+/*global window, document, jQuery */
 /* Events
 */
 window.Uberlisting = {};
@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
     var $content = $("#content");
     var $uber_view_content = $('#uber-view-content');
     var events = window.Uberlisting.Events;
-    var base_href = $('base').attr('href');
+    var base_href = jQuery('body').data('base-url') || jQuery('base').attr('href') || "";
     var success_event = events.Success;
     var listing_event = events.Listing;
     var $window = $(window);
@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
             var batchQueryString = $.param.querystring(this.href);
             var uberTemplate = $.bbq.getState('uberTemplate') || selected_template;
             this.href = $.param.querystring(uberTemplate, batchQueryString);
-        }); 
+        });
 
         $content.delegate('.listingBar ', 'click', function(evt){
             var $target = $(evt.target);
@@ -87,7 +87,7 @@ jQuery(document).ready(function($) {
         }
         if ($.bbq.getState('uberTemplate') === undefined && cookie) {
             $.bbq.pushState({
-                'uberTemplate': cookie 
+                'uberTemplate': cookie
             });
         }
     };
