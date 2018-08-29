@@ -1,6 +1,9 @@
 Changelog
 =========
 
+3.1-dev0 - (unreleased)
+---------------------
+
 3.0 - (2018-08-27)
 -----------------------
 * Change: Get base-url from body data `base-url`
@@ -101,4 +104,3 @@ Changelog
   [ciobabog refs #13892]
 * Initial release
   [ichim-david]
-
